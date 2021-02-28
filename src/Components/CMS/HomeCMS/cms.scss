@@ -1,0 +1,44 @@
+$primary-color: #a63f04;
+$secodary-color: #0d0d0d;
+$secodary2-color: #d9d9d9;
+$accent-color: #f28f17;
+$accent2-color: #bf5b05;
+
+.CMSwrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  .navbar {
+    width: 200px;
+    background-color: #121212;
+    min-height: 100vh;
+    min-width: 20px;
+    color: #fff;
+    ul {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      a {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 500;
+        transition: all 150ms ease-in-out;
+        &:hover {
+          background-color: rgba(225, 225, 225, 0.16);
+        }
+        li {
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 10px 10px;
+        }
+      }
+    }
+  }
+  .content {
+    flex: 1;
+    background-color: #fff;
+    color: #fff;
+  }
+}
