@@ -1,0 +1,50 @@
+$primary-color: #a63f04;
+$secodary-color: #0d0d0d;
+$secodary2-color: #d9d9d9;
+$accent-color: #f28f17;
+$accent2-color: #bf5b05;
+
+.member {
+  margin: 10px;
+  background: $secodary2-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 20%;
+  height: 300px;
+  display: flex;
+  padding: 20px;
+  border-radius: 10px;
+  .image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid $accent2-color;
+    }
+  }
+  .data {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $secodary-color !important;
+
+    .title {
+      font-size: 1.2rem;
+      padding: 0px 20px;
+      color: $secodary-color !important;
+    }
+    .delete {
+      svg {
+        color: #f4817e;
+      }
+    }
+  }
+}

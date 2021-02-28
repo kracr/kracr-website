@@ -1,0 +1,67 @@
+.footer {
+  min-height: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .wrapper {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .left {
+      padding: 0px 20px;
+      display: flex;
+      flex-direction: column;
+      .contactItem {
+        margin: 5px 0px;
+        display: flex;
+        align-items: center;
+        svg {
+          padding-right: 10px;
+        }
+      }
+    }
+    .middle {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      div {
+        display: flex;
+        align-items: center;
+        svg {
+          padding: 0px 10px;
+        }
+      }
+    }
+    .right {
+      padding: 0px 20px;
+      display: flex;
+      svg {
+        margin: 0px 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .footer {
+    .wrapper {
+      width: 100%;
+      flex-direction: column;
+      justify-content: flex-start;
+      font-size: 1.5rem;
+      .left {
+        padding: 20px 0px;
+      }
+      .middle {
+        width: 90%;
+        padding: 20px 0px;
+      }
+      .right {
+        padding: 20px 0px;
+      }
+    }
+  }
+}
