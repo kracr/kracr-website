@@ -180,7 +180,7 @@ function Home() {
               <div className="each-slide">
                 <div
                   style={{
-                    backgroundImage: `url('https://dummyimage.com/500x400/000/fff')`,
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2Fslideshow1.jpeg?alt=media&token=6a9352af-9628-439e-9749-09d71997c63d')`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                   }}
