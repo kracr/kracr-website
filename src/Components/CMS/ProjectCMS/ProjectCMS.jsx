@@ -26,6 +26,7 @@ function ProjectCMS() {
   const [description, setDescription] = useState("");
   const [author, setAuthor] = useState("");
   const [year, setYear] = useState("");
+  const [github, setGithub] = useState("");
 
   const addTeamMember = async (e) => {
     e.preventDefault();
@@ -49,6 +50,7 @@ function ProjectCMS() {
               Authors: author,
               PublicationURL: url,
               Category: category,
+              GithubLink: github,
               Year: year,
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             });
@@ -168,6 +170,17 @@ function ProjectCMS() {
             ></input>
             <span className="border"></span>
           </div>
+
+          <div>
+            <input
+              type="text"
+              value={github}
+              onChange={(e) => setGithub(e.target.value)}
+              placeholder="Github Link"
+            ></input>
+            <span className="border"></span>
+          </div>
+
           <div>
             <FormControl className={classes.formControl}>
               <InputLabel id="demo-controlled-open-select-label">

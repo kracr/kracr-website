@@ -50,7 +50,8 @@ function Project() {
           inputFilter.toLowerCase()
         ) !== -1 ||
         publication.Authors.toLowerCase().indexOf(inputFilter.toLowerCase()) !==
-          -1
+          -1 ||
+        publication.Year.toLowerCase().indexOf(inputFilter.toLowerCase()) !== -1
       );
     });
     setFilteredData(tempList);
@@ -91,6 +92,7 @@ function Project() {
                   <div className="title">{publication.Title}</div>
                   <div className="author">{publication.Authors}</div>
                   <div className="description">{publication.Description}</div>
+                  <div className="githubLink">{publication.GithubLink}</div>
                 </div>
                 <div className="right">
                   <IconButton

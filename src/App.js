@@ -44,7 +44,6 @@ function App() {
                 <Project />
               </Route>
             </Switch>
-
             <Footer />
           </Route>
         </Switch>
