@@ -68,14 +68,33 @@ $accent2-color: #bf5b05;
                 font-weight: 600;
                 display: flex;
                 flex-direction: column;
-                flex: 3;
+                flex: 1;
                 .interests {
                   color: #fff;
                   font-size: 1rem;
                   font-weight: 500;
+				  padding-top: 8px;
+				  text-align: justify;
+				  
+				  flex: 1;
                 }
               }
-
+              .SubTitle {
+                color: $accent-color;
+                font-size: 1rem;
+                font-weight: 600;
+                display: flex;
+                flex-direction: column;
+				padding-top: 8px;
+                flex: 1;
+                .interests {
+				  flex: 1;
+                  color: #fff;
+                  font-size: 1rem;
+			      text-align: justify;
+                  font-weight: 500;
+                }
+              }
               .socials {
                 flex: 1;
                 color: #fff;
