@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./team.scss";
 import {
   KeyboardArrowUp,
+  Home,
   Twitter,
   LinkedIn,
   GitHub,
@@ -41,18 +42,20 @@ function Team() {
             setNBtech(true);
           } else if (doc.data().Position == "Alumni") {
             setNAlumni(true);
+		  } else if (doc.data().Position == "Collaborator") {
+            setViewCollab(true);
           }
         });
       });
   }, []);
 
-  const changeViewCollab = () => {
+  /*const changeViewCollab = () => {
     if (viewCollab) {
       setViewCollab(false);
     } else {
       setViewCollab(true);
     }
-  };
+  };*/
 
   return (
     <div className="team">
@@ -70,11 +73,25 @@ function Team() {
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
-                          {member.Name}
-                          <div className="interests">{member.Designation}</div>
+						{member.Name}
+						<div className="interests">{member.Designation}</div>	</div>
+						<div className="SubTitle"> Research Interests:
+						<div className="interests">{member.Interests}</div>
+					
                         </div>
-
+                        
                         <div className="socials">
+						  {member?.webpageLink !== "" ? (
+                            <a
+                              href={member?.webpageLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Home />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
                           {member?.twitterLink !== "" ? (
                             <a
                               href={member?.twitterLink}
@@ -86,6 +103,263 @@ function Team() {
                           ) : (
                             <></>
                           )}
+
+                          {member?.linkedinLink !== "" ? (
+                            <a
+                              href={member?.linkedinLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <LinkedIn />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.githubLink !== "" ? (
+                            <a
+                              href={member?.githubLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <GitHub />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.Mail !== "" ? (
+                            <a
+                              href={`mailto:${member?.Mail}`}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Mail />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+		{nPHD ? (
+          <div className="row">
+            <div className="title">Ph.D Students</div>
+            <div className="profiles">
+              {allMembers
+                ?.filter(({ id, member }) => member.Position === "PhD")
+                .map(({ id, member }) => (
+                  <div className="container">
+                    <img src={member.ImageURL} alt={member.Name} />
+                    <div className="middle">
+                      <div className="wrapper">
+                        <div className="Title">
+						{member.Name}
+						<div className="interests">{member.Designation}</div>	</div>
+						<div className="SubTitle"> Research Interests:	
+						<div className="interests">{member.Interests}</div>
+                        </div>
+						
+					
+                        <div className="socials">
+						  {member?.webpageLink !== "" ? (
+                            <a
+                              href={member?.webpageLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Home />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.twitterLink !== "" ? (
+                            <a
+                              href={member?.twitterLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Twitter />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+
+                          {member?.linkedinLink !== "" ? (
+                            <a
+                              href={member?.linkedinLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <LinkedIn />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.githubLink !== "" ? (
+                            <a
+                              href={member?.githubLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <GitHub />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.Mail !== "" ? (
+                            <a
+                              href={`mailto:${member?.Mail}`}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Mail />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        {nMtech ? (
+          <div className="row">
+            <div className="title">Master's Students</div>
+            <div className="profiles">
+              {allMembers
+                ?.filter(({ id, member }) => member.Position === "Masters")
+                .map(({ id, member }) => (
+                  <div className="container">
+                    <img src={member.ImageURL} alt={member.Name} />
+                    <div className="middle">
+                      <div className="wrapper">
+                        <div className="Title">
+						{member.Name}
+						<div className="interests">{member.Designation}</div>	</div>
+						<div className="SubTitle"> Research Interests:
+						<div className="interests">{member.Interests}</div>
+					
+                        </div>
+                        <div className="socials">
+						  {member?.webpageLink !== "" ? (
+                            <a
+                              href={member?.webpageLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Home />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.twitterLink !== "" ? (
+                            <a
+                              href={member?.twitterLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Twitter />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+
+                          {member?.linkedinLink !== "" ? (
+                            <a
+                              href={member?.linkedinLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <LinkedIn />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.githubLink !== "" ? (
+                            <a
+                              href={member?.githubLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <GitHub />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.Mail !== "" ? (
+                            <a
+                              href={`mailto:${member?.Mail}`}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Mail />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        {nBtech ? (
+          <div className="row">
+            <div className="title">B.Tech Students</div>
+            <div className="profiles">
+              {allMembers
+                ?.filter(({ id, member }) => member.Position === "BTech")
+                .map(({ id, member }) => (
+                  <div className="container">
+                    <img src={member.ImageURL} alt={member.Name} />
+                    <div className="middle">
+                      <div className="wrapper">
+                        <div className="Title">
+						{member.Name}
+						<div className="interests">{member.Designation}</div>	</div>
+						<div className="SubTitle"> Research Interests:
+						<div className="interests">{member.Interests}</div>
+					
+                        </div>
+                        <div className="socials">
+						  {member?.webpageLink !== "" ? (
+                            <a
+                              href={member?.webpageLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Home />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.twitterLink !== "" ? (
+                            <a
+                              href={member?.twitterLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Twitter />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+
                           {member?.linkedinLink !== "" ? (
                             <a
                               href={member?.linkedinLink}
@@ -144,11 +418,24 @@ function Team() {
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
-                          {member.Name}
-                          <div className="interests">{member.Designation}</div>
+						{member.Name}
+						<div className="interests">{member.Designation}</div>	</div>
+						<div className="SubTitle"> Research Interests:
+						<div className="interests">{member.Interests}</div>
+					
                         </div>
-
                         <div className="socials">
+						  {member?.webpageLink !== "" ? (
+                            <a
+                              href={member?.webpageLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Home />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
                           {member?.twitterLink !== "" ? (
                             <a
                               href={member?.twitterLink}
@@ -160,6 +447,7 @@ function Team() {
                           ) : (
                             <></>
                           )}
+
                           {member?.linkedinLink !== "" ? (
                             <a
                               href={member?.linkedinLink}
@@ -203,219 +491,7 @@ function Team() {
         ) : (
           ""
         )}
-        {nPHD ? (
-          <div className="row">
-            <div className="title">Ph.D Students</div>
-            <div className="profiles">
-              {allMembers
-                ?.filter(({ id, member }) => member.Position === "PhD")
-                .map(({ id, member }) => (
-                  <div className="container">
-                    <img src={member.ImageURL} alt={member.Name} />
-                    <div className="middle">
-                      <div className="wrapper">
-                        <div className="Title">
-                          {member.Name}
-                          <div className="interests">{member.Designation}</div>
-                        </div>
-
-                        <div className="socials">
-                          {member?.twitterLink !== "" ? (
-                            <a
-                              href={member?.twitterLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <Twitter />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                          {member?.linkedinLink !== "" ? (
-                            <a
-                              href={member?.linkedinLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <LinkedIn />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                          {member?.githubLink !== "" ? (
-                            <a
-                              href={member?.githubLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <GitHub />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                          {member?.Mail !== "" ? (
-                            <a
-                              href={`mailto:${member?.Mail}`}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <Mail />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-        {nMtech ? (
-          <div className="row">
-            <div className="title">Master's Students</div>
-            <div className="profiles">
-              {allMembers
-                ?.filter(({ id, member }) => member.Position === "Masters")
-                .map(({ id, member }) => (
-                  <div className="container">
-                    <img src={member.ImageURL} alt={member.Name} />
-                    <div className="middle">
-                      <div className="wrapper">
-                        <div className="Title">
-                          {member.Name}
-                          <div className="interests">{member.Designation}</div>
-                        </div>
-
-                        <div className="socials">
-                          {member?.twitterLink !== "" ? (
-                            <a
-                              href={member?.twitterLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <Twitter />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                          {member?.linkedinLink !== "" ? (
-                            <a
-                              href={member?.linkedinLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <LinkedIn />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                          {member?.githubLink !== "" ? (
-                            <a
-                              href={member?.githubLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <GitHub />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                          {member?.Mail !== "" ? (
-                            <a
-                              href={`mailto:${member?.Mail}`}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <Mail />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-        {nBtech ? (
-          <div className="row">
-            <div className="title">B.Tech Students</div>
-            <div className="profiles">
-              {allMembers
-                ?.filter(({ id, member }) => member.Position === "BTech")
-                .map(({ id, member }) => (
-                  <div className="container">
-                    <img src={member.ImageURL} alt={member.Name} />
-                    <div className="middle">
-                      <div className="wrapper">
-                        <div className="Title">
-                          {member.Name}
-                          <div className="interests">{member.Designation}</div>
-                        </div>
-
-                        <div className="socials">
-                          {member?.twitterLink !== "" ? (
-                            <a
-                              href={member?.twitterLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <Twitter />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                          {member?.linkedinLink !== "" ? (
-                            <a
-                              href={member?.linkedinLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <LinkedIn />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                          {member?.githubLink !== "" ? (
-                            <a
-                              href={member?.githubLink}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <GitHub />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                          {member?.Mail !== "" ? (
-                            <a
-                              href={`mailto:${member?.Mail}`}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <Mail />
-                            </a>
-                          ) : (
-                            <></>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
+        
         {nAlumni ? (
           <div className="row">
             <div className="title">Alumni</div>
@@ -433,6 +509,17 @@ function Team() {
                         </div>
 
                         <div className="socials">
+						  {member?.webpageLink !== "" ? (
+                            <a
+                              href={member?.webpageLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Home />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
                           {member?.twitterLink !== "" ? (
                             <a
                               href={member?.twitterLink}
@@ -444,6 +531,90 @@ function Team() {
                           ) : (
                             <></>
                           )}
+
+                          {member?.linkedinLink !== "" ? (
+                            <a
+                              href={member?.linkedinLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <LinkedIn />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.githubLink !== "" ? (
+                            <a
+                              href={member?.githubLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <GitHub />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.Mail !== "" ? (
+                            <a
+                              href={`mailto:${member?.Mail}`}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Mail />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        {viewCollab ? (
+          <div className="row">
+            <div className="title">Collaborators</div>
+            <div className="profiles">
+              {allMembers
+                ?.filter(({ id, member }) => member.Position === "Collaborator")
+                .map(({ id, member }) => (
+                  <div className="container">
+                    <img src={member.ImageURL} alt={member.Name} />
+                    <div className="middle">
+                      <div className="wrapper">
+                        <div className="Title">
+                          {member.Name}
+                          <div className="interests">{member.Designation}</div>
+                        </div>
+
+                        <div className="socials">
+						  {member?.webpageLink !== "" ? (
+                            <a
+                              href={member?.webpageLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Home />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+                          {member?.twitterLink !== "" ? (
+                            <a
+                              href={member?.twitterLink}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Twitter />
+                            </a>
+                          ) : (
+                            <></>
+                          )}
+
                           {member?.linkedinLink !== "" ? (
                             <a
                               href={member?.linkedinLink}
@@ -488,28 +659,8 @@ function Team() {
           ""
         )}
 
-        <div className="row">
-          <div className="title">Collaborators</div>
-        </div>
       </div>
-      {/*
-      <div className="collaborators">
-        <div className="wrapper">
-          <div
-            className={
-              viewCollab
-                ? "content-wrapper contentWrapperActive"
-                : "content-wrapper"
-            }
-          >
-            <div className="content">ALL COLLABORATORS</div>
-          </div>
-          <div className="title" onClick={changeViewCollab}>
-            Collaborators <KeyboardArrowUp />
-          </div>
-        </div>
-      </div>
-          */}
+
     </div>
   );
 }

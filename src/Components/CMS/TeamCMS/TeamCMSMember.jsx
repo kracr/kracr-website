@@ -87,6 +87,7 @@ function TeamCMSMember({ member, id }) {
               <MenuItem value={"Alumni"}>Alumni</MenuItem>
               <MenuItem value={"RA"}>RA</MenuItem>
               <MenuItem value={"Intern"}>Intern</MenuItem>
+              <MenuItem value={"Collaborator"}>Collaborator</MenuItem>
             </Select>
           </FormControl>{" "}
         </div>

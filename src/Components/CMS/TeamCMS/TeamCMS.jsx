@@ -25,6 +25,7 @@ function TeamCMS() {
   const [name, setName] = useState("");
   const [designation, setDesignation] = useState("");
   const [interest, setInterest] = useState("");
+  const [webpage, setWebpage] = useState("");
   const [github, setGithub] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedin, setLinkedin] = useState("");
@@ -56,6 +57,7 @@ function TeamCMS() {
               Interests: interest,
               Designation: designation,
               Position: category,
+			  webpageLink: webpage,
               githubLink: github,
               twitterLink: twitter,
               linkedinLink: linkedin,
@@ -65,6 +67,7 @@ function TeamCMS() {
             });
             setName("");
             setInterest("");
+			setWebpage("");
             setTwitter("");
             setLinkedin("");
             setGithub("");
@@ -185,6 +188,15 @@ function TeamCMS() {
           <div>
             <input
               type="text"
+              value={webpage}
+              onChange={(e) => setWebpage(e.target.value)}
+              placeholder="Webpage Link"
+            ></input>
+            <span className="border"></span>
+          </div>
+          <div>
+            <input
+              type="text"
               value={github}
               onChange={(e) => setGithub(e.target.value)}
               placeholder="Github Link"
@@ -239,6 +251,10 @@ function TeamCMS() {
                 <MenuItem value={"PhD"}>Ph.D</MenuItem>
                 <MenuItem value={"Masters"}>Masters</MenuItem>
                 <MenuItem value={"BTech"}>B.Tech</MenuItem>
+              <MenuItem value={"Alumni"}>Alumni</MenuItem>
+              <MenuItem value={"RA"}>RA</MenuItem>
+              <MenuItem value={"Intern"}>Intern</MenuItem>
+              <MenuItem value={"Collaborator"}>Collaborator</MenuItem>
               </Select>
             </FormControl>
           </div>
