@@ -11,7 +11,7 @@ function Publication() {
 
   useEffect(() => {
     db.collection("Publications")
-      .orderBy("Title", "asc")
+      .orderBy("Year", "desc")
       .onSnapshot((snapshot) => {
         setAllPublications(
           snapshot.docs.map((doc) => ({ id: doc.id, publication: doc.data() }))
