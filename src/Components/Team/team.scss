@@ -73,11 +73,15 @@ $accent2-color: #bf5b05;
                   color: #fff;
                   font-size: 1rem;
                   font-weight: 500;
-				  padding-top: 8px;
+				  padding-top: 5px;
 				  text-align: justify;
 				  
 				  flex: 1;
                 }
+				a {
+
+                    color: $accent-color;
+                  }
               }
               .SubTitle {
                 color: $accent-color;
@@ -90,7 +94,7 @@ $accent2-color: #bf5b05;
                 .interests {
 				  flex: 1;
                   color: #fff;
-                  font-size: 1rem;
+                  font-size: 0.9rem;
 			      text-align: justify;
                   font-weight: 500;
                 }
@@ -121,14 +125,111 @@ $accent2-color: #bf5b05;
             }
           }
         }
+		
+		
+		.container2 {
+          position: relative;
+          margin: 0px 30px 0px 0px;
+          background: #fff;
+          overflow: hidden;
+          width: 300px;
+          height: 90px;
+
+          .middle {
+            transition: all 150ms ease;
+            position: absolute;
+            background-color: rgba(27, 27, 27, 0);
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .wrapper {
+              height: 90%;
+              width: 90%;
+              margin: auto;
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+              flex-direction: column;
+              .Title {
+                color: $primary-color;
+                font-size: 1.5rem;
+                font-weight: 600;
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                .interests {
+                  color: black;
+                  font-size: 1.2rem;
+                  font-weight: 500;
+				  padding-top: 5px;
+				  text-align: justify;
+				  
+				  flex: 1;
+				  
+                }
+					a {
+
+                    color: $accent-color;
+                  }
+              }
+
+              .SubTitle {
+                color: $accent-color;
+                font-size: 1rem;
+                font-weight: 600;
+                display: flex;
+                flex-direction: column;
+				padding-top: 8px;
+                flex: 1;
+                .interests {
+				  flex: 1;
+                  color: #fff;
+                  font-size: 0.9rem;
+			      text-align: justify;
+                  font-weight: 500;
+                }
+              }
+              .socials {
+                flex: 1;
+                color: #fff;
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                svg {
+                  padding: 15px;
+                  color: #fff;
+                  transition: all 150ms ease-in-out;
+                  &:hover {
+                    background: #fff;
+                    border-radius: 50%;
+                    color: $accent2-color;
+                  }
+                }
+              }
+            }
+          }
+          &:hover {
+            .middle {
+              opacity: 1;
+            }
+          }
+        }
+		
       }
     }
   }
   .collaborators {
-    position: sticky;
-    bottom: 0;
-    color: #fff;
-    background: #1b1b1b;
+    position: absolute;
+    top: 0;
+    color: $secodary-color;;
+    background: #fff;
     padding: 20px 0px;
     .wrapper {
       margin: auto;
@@ -154,9 +255,9 @@ $accent2-color: #bf5b05;
         .content {
           width: 100%;
           height: 100%;
-          background: #1b1b1b;
+          background: #fff;
           transition: all 250ms ease-in-out;
-          color: #fff;
+          color: $secodary-color;
           font-size: 5rem;
           display: flex;
           justify-items: center;
@@ -165,7 +266,6 @@ $accent2-color: #bf5b05;
       }
       .contentWrapperActive {
         transition: all 250ms ease-in-out;
-        height: 400px;
       }
     }
   }

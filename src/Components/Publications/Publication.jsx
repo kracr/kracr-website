@@ -3,6 +3,7 @@ import "./Publication.scss";
 import db from "../../firebase";
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 function Publication() {
   const [allPublications, setAllPublications] = useState([]);
@@ -59,11 +60,12 @@ function Publication() {
               <div className="description">{publication.Description}</div>
             </div>
             <div className="right">
-              <IconButton
-                onClick={() => window.open(`${publication.PublicationURL}`)}
-              >
-                <Description />
-              </IconButton>
+			{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.PublicationURL}`)}>
+<Description />
+              </IconButton>)}
+              
+              
             </div>
           </div>
         ))}
