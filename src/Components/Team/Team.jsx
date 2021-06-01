@@ -116,13 +116,18 @@ function Team() {
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
-						{member.Name}
-						<div className="interests">{member.Designation}</div>	</div>
-						<div className="SubTitle"> Research Interests:
-						<div className="interests">{member.Interests}</div>
-					
-                        </div>
+						 {member.Name}
+						 <div className="interests">{member.Designation}</div>	
+						</div>
+						
+                        {member?.Interests !== "" ? (<div className="SubTitle"> 
+                         Research Interests:
+						 <div className="interests">{member.Interests}</div></div>
                         
+                          ) : (
+                            <></>
+                          )}
+						
                         <div className="socials">
 						  {member?.webpageLink !== "" ? (
                             <a
@@ -206,12 +211,17 @@ function Team() {
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
-						{member.Name}
-						<div className="interests">{member.Designation}</div>	</div>
-						<div className="SubTitle"> Research Interests:	
-						<div className="interests">{member.Interests}</div>
-                        </div>
+						 {member.Name}
+						 <div className="interests">{member.Designation}</div>	
+						</div>
 						
+                        {member?.Interests !== "" ? (<div className="SubTitle"> 
+                         Research Interests:
+						 <div className="interests">{member.Interests}</div></div>
+                        
+                          ) : (
+                            <></>
+                          )}
 					
                         <div className="socials">
 						  {member?.webpageLink !== "" ? (
@@ -297,12 +307,18 @@ function Team() {
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
-						{member.Name}
-						<div className="interests">{member.Designation}</div>	</div>
-						<div className="SubTitle"> Research Interests:
-						<div className="interests">{member.Interests}</div>
-					
-                        </div>
+						 {member.Name}
+						 <div className="interests">{member.Designation}</div>	
+						</div>
+						
+                        {member?.Interests !== "" ? (<div className="SubTitle"> 
+                         Research Interests:
+						 <div className="interests">{member.Interests}</div></div>
+                        
+                          ) : (
+                            <></>
+                          )}
+
                         <div className="socials">
 						  {member?.webpageLink !== "" ? (
                             <a
@@ -388,12 +404,18 @@ function Team() {
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
-						{member.Name}
-						<div className="interests">{member.Designation}</div>	</div>
-						<div className="SubTitle"> Research Interests:
-						<div className="interests">{member.Interests}</div>
-					
-                        </div>
+						 {member.Name}
+						 <div className="interests">{member.Designation}</div>	
+						</div>
+						
+                        {member?.Interests !== "" ? (<div className="SubTitle"> 
+                         Research Interests:
+						 <div className="interests">{member.Interests}</div></div>
+                        
+                          ) : (
+                            <></>
+                          )}
+
                         <div className="socials">
 						  {member?.webpageLink !== "" ? (
                             <a
@@ -476,12 +498,18 @@ function Team() {
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
-						{member.Name}
-						<div className="interests">{member.Designation}</div>	</div>
-						<div className="SubTitle"> Research Interests:
-						<div className="interests">{member.Interests}</div>
-					
-                        </div>
+						 {member.Name}
+						 <div className="interests">{member.Designation}</div>	
+						</div>
+						
+                        {member?.Interests !== "" ? (<div className="SubTitle"> 
+                         Research Interests:
+						 <div className="interests">{member.Interests}</div></div>
+                        
+                          ) : (
+                            <></>
+                          )}
+
                         <div className="socials">
 						  {member?.webpageLink !== "" ? (
                             <a
@@ -613,9 +641,17 @@ function Team() {
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
-                          {member.Name}
-                          <div className="interests">{member.Designation}</div>
-                        </div>
+						 {member.Name}
+						 <div className="interests">{member.Designation}</div>	
+						</div>
+						
+                        {member?.Interests !== "" ? (<div className="SubTitle"> 
+                         Research Interests:
+						 <div className="interests">{member.Interests}</div></div>
+                        
+                          ) : (
+                            <></>
+                          )}
 
                         <div className="socials">
 						  {member?.webpageLink !== "" ? (
