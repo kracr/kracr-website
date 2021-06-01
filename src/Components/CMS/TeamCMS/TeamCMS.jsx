@@ -35,12 +35,12 @@ function TeamCMS() {
     e.preventDefault();
     if (
       name === "" ||
-      interest === "" ||
-      designation === "" ||
-      !validate(mail)
+      designation === ""
     ) {
-      window.alert("Please Fill all the details");
-    } else {
+      window.alert("Please fill both name and designation");
+    } 
+	else {
+
       e.preventDefault();
       let uploadTask = storage.ref(`/Team/${file.name}`).put(file);
       uploadTask.on("state_changed", console.log, console.error, () => {
