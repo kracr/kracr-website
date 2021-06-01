@@ -3,6 +3,7 @@ import "./Project.scss";
 import db from "../../firebase";
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 function Project() {
   const [allPublications, setAllPublications] = useState([]);
@@ -92,7 +93,14 @@ function Project() {
                   <div className="title">{publication.Title}</div>
                   <div className="author">{publication.Authors}</div>
                   <div className="description">{publication.Description}</div>
-                  <div className="githubLink">{publication.GithubLink}</div>
+                </div>
+				<div className="githubLink">
+                  <GitHubIcon
+                    onClick={() => window.open(`${publication.GithubLink}`)}
+
+                  >
+                    <Description />
+                  </GitHubIcon>
                 </div>
                 <div className="right">
                   <IconButton

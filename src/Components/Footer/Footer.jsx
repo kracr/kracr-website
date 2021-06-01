@@ -1,5 +1,8 @@
 import React from "react";
 import "./footer.scss";
+
+import { Link } from 'react-router-dom';
+
 import {
   PhoneEnabled,
   Home,
@@ -10,6 +13,7 @@ import {
   Favorite,
 } from "@material-ui/icons";
 
+
 function Footer() {
   return (
     <div className="footer">
@@ -17,7 +21,7 @@ function Footer() {
         {" "}
         <div className="left">
           <div className="contactItem">
-            <PhoneEnabled /> 123 456 0789
+            <PhoneEnabled /> 01126907455
           </div>
           <div className="contactItem">
             <Home />
@@ -25,7 +29,7 @@ function Footer() {
           </div>
           <div className="contactItem">
             {" "}
-            <Mail /> johndoe@johndoe.com
+            <Mail /> raghava.mutharaju@iiitd.ac.in
           </div>
         </div>
         <div className="middle">
@@ -36,13 +40,17 @@ function Footer() {
           </div>
         </div>
         <div className="right">
-          <div className="socialItem">
-            <GitHub />
+          <div className="GitHub">
+		  <a href="https://github.com/kracr/kracr-website"> 	    	<GitHub /> </a>
+     
+		
           </div>
           <div className="socialItem">
-            <LinkedIn />
+		  <a href="https://www.linkedin.com/in/kracr-lab-425762204/">
+            <LinkedIn /> </a>
           </div>
           <div className="socialItem">
+             <a href="https://twitter.com/KracrL"> </a>
             <Twitter />
           </div>
         </div>
