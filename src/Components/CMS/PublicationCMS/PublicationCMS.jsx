@@ -30,9 +30,36 @@ function PublicationCMS() {
   const addTeamMember = async (e) => {
     e.preventDefault();
     if (title === "" || description === "" || author === "") {
-      window.alert("Please Fill all the details");
+      window.alert("Please fill Title, Description and Author");
     } else {
-      e.preventDefault();
+		  e.preventDefault();
+		if (
+	    file === null
+		)
+		{	
+		
+			
+ 
+            db.collection("Publications").doc().set({
+              Title: title,
+              Description: description,
+              Authors: author,
+              PublicationURL: url,
+              Category: category,
+              Year: year,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            });
+            setTitle("");
+            setDescription("");
+            setAuthor("");
+            setFile(null);
+            setYear("");
+            e.target.value = null;
+		
+      
+  }
+  else {
+
       let uploadTask = storage.ref(`/Publications/${file.name}`).put(file);
       uploadTask.on("state_changed", console.log, console.error, () => {
         storage
@@ -62,7 +89,10 @@ function PublicationCMS() {
             e.target.value = null;
           });
       });
-    }
+
+	  
+  }
+  }
   };
 
   //Deleting Member
@@ -142,7 +172,7 @@ function PublicationCMS() {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Title"
+              placeholder="Title *"
             ></input>
             <span className="border"></span>
           </div>
@@ -151,7 +181,7 @@ function PublicationCMS() {
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Description"
+              placeholder="Description *"
             ></input>
             <span className="border"></span>
           </div>
@@ -160,7 +190,7 @@ function PublicationCMS() {
               type="text"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
-              placeholder="Author"
+              placeholder="Author *"
             ></input>
             <span className="border"></span>
           </div>

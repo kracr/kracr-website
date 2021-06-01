@@ -37,12 +37,42 @@ function TeamCMS() {
       name === "" ||
       designation === ""
     ) {
-      window.alert("Please fill both name and designation");
+      window.alert("Please fill both name and designation");  
     } 
 	else {
-
       e.preventDefault();
-      let uploadTask = storage.ref(`/Team/${file.name}`).put(file);
+	  if (
+	  
+	    file === null
+		)
+		{
+			 db.collection("TeamMembers").doc().set({
+              Name: name,
+              Interests: interest,
+              Designation: designation,
+              Position: category,
+			  webpageLink: webpage,
+              githubLink: github,
+              twitterLink: twitter,
+              linkedinLink: linkedin,
+              Mail: mail,
+              ImageURL: url,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            });
+            setName("");
+            setInterest("");
+			setWebpage("");
+            setTwitter("");
+            setLinkedin("");
+            setGithub("");
+            setDesignation("");
+            setMail("");
+            setFile(null);
+            e.target.value = null;
+         
+    }
+		else {
+			  let uploadTask = storage.ref(`/Team/${file.name}`).put(file);
       uploadTask.on("state_changed", console.log, console.error, () => {
         storage
           .ref("Team")
@@ -76,7 +106,10 @@ function TeamCMS() {
             setFile(null);
             e.target.value = null;
           });
-      });
+		});
+           
+		
+		}
     }
   };
 
@@ -155,7 +188,7 @@ function TeamCMS() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
+              placeholder="Name *" 
             ></input>
             <span className="border"></span>
           </div>
@@ -164,7 +197,7 @@ function TeamCMS() {
               type="text"
               value={designation}
               onChange={(e) => setDesignation(e.target.value)}
-              placeholder="About"
+              placeholder="Designation *"
             ></input>
             <span className="border"></span>
           </div>
@@ -233,7 +266,7 @@ function TeamCMS() {
           <div>
             <FormControl className={classes.formControl}>
               <InputLabel id="demo-controlled-open-select-label">
-                category
+                category *
               </InputLabel>
               <Select
                 labelId="demo-controlled-open-select-label"

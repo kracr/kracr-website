@@ -41,7 +41,7 @@ function Footer() {
         </div>
         <div className="right">
           <div className="GitHub">
-		  <a href="https://github.com/kracr/kracr-website"> 	    	<GitHub /> </a>
+		  <a href="https://github.com/kracr"> 	    	<GitHub /> </a>
      
 		
           </div>
