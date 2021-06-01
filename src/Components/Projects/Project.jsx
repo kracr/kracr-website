@@ -93,22 +93,19 @@ function Project() {
                   <div className="title">{publication.Title}</div>
                   <div className="author">{publication.Authors}</div>
                   <div className="description">{publication.Description}</div>
-                </div>
-				<div className="githubLink">
-                  <GitHubIcon
-                    onClick={() => window.open(`${publication.GithubLink}`)}
+				  {publication?.GithubLink == "" ?    <> < />  : (<IconButton 
+                onClick={() => window.open(`${publication.GithubLink}`)}>
+                <GitHubIcon />
+                </IconButton>)}
+				
+				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton 
+                onClick={() => window.open(`${publication.PublicationURL}`)}>
+                <Description />
+                </IconButton>)}
+                
+				</div>
 
-                  >
-                    <Description />
-                  </GitHubIcon>
-                </div>
-                <div className="right">
-                  <IconButton
-                    onClick={() => window.open(`${publication.PublicationURL}`)}
-                  >
-                    <Description />
-                  </IconButton>
-                </div>
+                
               </div>
             ))}
         </div>
@@ -130,14 +127,17 @@ function Project() {
                   <div className="title">{publication.Title}</div>
                   <div className="author">{publication.Authors}</div>
                   <div className="description">{publication.Description}</div>
+				   {publication?.GithubLink == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.GithubLink}`)}>
+                <GitHubIcon />
+                </IconButton>)}
+				
+				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.PublicationURL}`)}>
+                <Description />
+                </IconButton>)}
                 </div>
-                <div className="right">
-                  <IconButton
-                    onClick={() => window.open(`${publication.PublicationURL}`)}
-                  >
-                    <Description />
-                  </IconButton>
-                </div>
+              
               </div>
             ))}
         </div>
@@ -155,14 +155,17 @@ function Project() {
                   <div className="title">{publication.Title}</div>
                   <div className="author">{publication.Authors}</div>
                   <div className="description">{publication.Description}</div>
+				   {publication?.GithubLink == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.GithubLink}`)}>
+                <GitHubIcon />
+                </IconButton>)}
+				
+				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.PublicationURL}`)}>
+                <Description />
+                </IconButton>)}
                 </div>
-                <div className="right">
-                  <IconButton
-                    onClick={() => window.open(`${publication.PublicationURL}`)}
-                  >
-                    <Description />
-                  </IconButton>
-                </div>
+
               </div>
             ))}
         </div>
@@ -179,14 +182,17 @@ function Project() {
                   <div className="title">{publication.Title}</div>
                   <div className="author">{publication.Authors}</div>
                   <div className="description">{publication.Description}</div>
+				   {publication?.GithubLink == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.GithubLink}`)}>
+                <GitHubIcon />
+                </IconButton>)}
+				
+				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.PublicationURL}`)}>
+                <Description />
+                </IconButton>)}
                 </div>
-                <div className="right">
-                  <IconButton
-                    onClick={() => window.open(`${publication.PublicationURL}`)}
-                  >
-                    <Description />
-                  </IconButton>
-                </div>
+
               </div>
             ))}
         </div>
@@ -203,14 +209,17 @@ function Project() {
                   <div className="title">{publication.Title}</div>
                   <div className="author">{publication.Authors}</div>
                   <div className="description">{publication.Description}</div>
+				   {publication?.GithubLink == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.GithubLink}`)}>
+                <GitHubIcon />
+                </IconButton>)}
+				
+				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.PublicationURL}`)}>
+                <Description />
+                </IconButton>)}
                 </div>
-                <div className="right">
-                  <IconButton
-                    onClick={() => window.open(`${publication.PublicationURL}`)}
-                  >
-                    <Description />
-                  </IconButton>
-                </div>
+
               </div>
             ))}
         </div>
@@ -224,14 +233,17 @@ function Project() {
                   <div className="title">{publication.Title}</div>
                   <div className="author">{publication.Authors}</div>
                   <div className="description">{publication.Description}</div>
+				   {publication?.GithubLink == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.GithubLink}`)}>
+                <GitHubIcon />
+                </IconButton>)}
+				
+				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${publication.PublicationURL}`)}>
+                <Description />
+                </IconButton>)}
                 </div>
-                <div className="right">
-                  <IconButton
-                    onClick={() => window.open(`${publication.PublicationURL}`)}
-                  >
-                    <Description />
-                  </IconButton>
-                </div>
+
               </div>
             ))}
         </div>

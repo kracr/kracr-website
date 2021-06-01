@@ -1,8 +1,15 @@
+$primary-color: #a63f04;
+$secodary-color: #0d0d0d;
+$secodary2-color: #d9d9d9;
+$accent-color: #f28f17;
+$accent2-color: #bf5b05;
+
 .footer {
   min-height: 150px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   .wrapper {
     width: 90%;
     margin: auto;
@@ -41,6 +48,9 @@
       svg {
         margin: 0px 10px;
       }
+	  a {
+	    color: $accent2-color;
+	  }
     }
   }
 }

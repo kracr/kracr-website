@@ -31,9 +31,32 @@ function ProjectCMS() {
   const addTeamMember = async (e) => {
     e.preventDefault();
     if (title === "" || description === "") {
-      window.alert("Please Fill all the details");
+      window.alert("Please fill Title and Description");
     } else {
-      e.preventDefault();
+		e.preventDefault();
+		if (
+	    file === null
+		)
+		{	
+            db.collection("Projects").doc().set({
+              Title: title,
+              Description: description,
+              Authors: author,
+              PublicationURL: url,
+              Category: category,
+              GithubLink: github,
+              Year: year,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            });
+            setTitle("");
+            setDescription("");
+            setAuthor("");
+            setYear("");
+            setFile(null);
+
+          }
+	
+	else {
       let uploadTask = storage.ref(`/Projects/${file.name}`).put(file);
       uploadTask.on("state_changed", console.log, console.error, () => {
         storage
@@ -61,7 +84,11 @@ function ProjectCMS() {
             setFile(null);
           });
       });
-    }
+         
+      
+		
+	}
+	}
   };
 
   //Deleting Member
@@ -139,7 +166,7 @@ function ProjectCMS() {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Title"
+              placeholder="Title *"
             ></input>
             <span className="border"></span>
           </div>
@@ -148,7 +175,7 @@ function ProjectCMS() {
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Description"
+              placeholder="Description *"
             ></input>
             <span className="border"></span>
           </div>
