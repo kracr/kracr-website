@@ -53,6 +53,8 @@ function ProjectCMS() {
             setAuthor("");
             setYear("");
             setFile(null);
+			setGithub("");
+			setURL("");
 
           }
 	
@@ -82,6 +84,8 @@ function ProjectCMS() {
             setAuthor("");
             setYear("");
             setFile(null);
+			setGithub("");
+			setURL("");
           });
       });
          
@@ -211,7 +215,7 @@ function ProjectCMS() {
           <div>
             <FormControl className={classes.formControl}>
               <InputLabel id="demo-controlled-open-select-label">
-                category
+                category *
               </InputLabel>
               <Select
                 labelId="demo-controlled-open-select-label"

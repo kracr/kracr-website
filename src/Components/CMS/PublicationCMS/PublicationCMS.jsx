@@ -54,6 +54,7 @@ function PublicationCMS() {
             setAuthor("");
             setFile(null);
             setYear("");
+			setURL("");
             e.target.value = null;
 		
       
@@ -86,6 +87,7 @@ function PublicationCMS() {
             setAuthor("");
             setFile(null);
             setYear("");
+			setURL("");
             e.target.value = null;
           });
       });

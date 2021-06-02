@@ -69,6 +69,7 @@ function TeamCMS() {
             setMail("");
             setFile(null);
             e.target.value = null;
+			setURL("");
          
     }
 		else {
@@ -105,6 +106,7 @@ function TeamCMS() {
             setMail("");
             setFile(null);
             e.target.value = null;
+			setURL("");
           });
 		});
            
