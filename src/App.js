@@ -3,7 +3,7 @@ import "./App.scss";
 import Home from "./Components/Home/Home";
 import Team from "./Components/Team/Team";
 import Publications from "./Components/Publications/Publication";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import HomeCMS from "./Components/CMS/HomeCMS/CMS";

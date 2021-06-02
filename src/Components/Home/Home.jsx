@@ -165,14 +165,7 @@ function Home() {
           <div className="left">
             <div className="title">About Us</div>
             <div className="content">
-              At the Knowledgeable Computing and Reasoning (KRaCR; pronounced as
-              cracker) Lab affiliated with the department of CSE at IIIT-Delhi,
-              we investigate techniques to incorporate these features into the
-              machine and improve its decision making. We work on all aspects of
-              the Semantic Web and Knowledge Graphs, including ontology
-              modelling, knowledge graphs, ontology reasoning, and their
-              applications to different domains such as healthcare, air
-              pollution, and robotics.
+              Background knowledge and the ability to draw appropriate inferences when required plays a central role in human decision making. At the Knowledgeable Computing and Reasoning (KRaCR; pronounced as cracker) Lab affiliated with the <a href="https://cse.iiitd.ac.in/" >CSE department</a> at <a href="https://iiitd.ac.in/" >IIIT-Delhi</a>, we investigate techniques to incorporate these features into the machine and improve its decision making. We work on all aspects of the Semantic Web and Knowledge Graphs, including ontology modelling, knowledge graphs, ontology reasoning, and their applications to different domains such as healthcare, air pollution, and robotics.
             </div>
           </div>
           <div className="right">
@@ -180,7 +173,7 @@ function Home() {
               <div className="each-slide">
                 <div
                   style={{
-                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2Fslideshow1.jpeg?alt=media&token=6a9352af-9628-439e-9749-09d71997c63d')`,
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F1.jpg?alt=media&token=6a6dbf95-a448-49c6-b858-11c22eb8a46a')`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                   }}
@@ -191,7 +184,7 @@ function Home() {
               <div className="each-slide">
                 <div
                   style={{
-                    backgroundImage: `url('https://dummyimage.com/500x400/000/fff')`,
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F2.jpg?alt=media&token=775a7b67-e5da-4a09-adde-996ec08b2fb6')`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                   }}
@@ -202,12 +195,111 @@ function Home() {
               <div className="each-slide">
                 <div
                   style={{
-                    backgroundImage: `url('https://dummyimage.com/500x400/000/fff')`,
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F3.jpg?alt=media&token=6bd325f0-b11c-4c1b-9688-2a8bfed17dde')`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                   }}
                 >
                   <span>Slide 3</span>
+                </div>
+              </div>
+			  <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F4.jpg?alt=media&token=e2be144f-54fd-49ab-afcf-034cdd5ce404')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 4</span>
+                </div>
+              </div>
+			  <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F5.jpg?alt=media&token=31d5f471-fc3c-48d4-85f8-bb4268891630')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 5</span>
+                </div>
+              </div>
+			  <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F6.jpg?alt=media&token=f0facd4f-1bed-4a0a-a639-3b202996ff2f')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 6</span>
+                </div>
+              </div>
+			  <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F7.jpg?alt=media&token=bb3d3822-e23d-4c9f-bebb-38cf09539329')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 7</span>
+                </div>
+              </div>
+			  <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F8.jpg?alt=media&token=c8d1d7b0-a63c-40da-a554-5e5e02da94b8')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 8</span>
+                </div>
+              </div>
+			  <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F9.jpg?alt=media&token=b696478f-ecd6-4e1c-9d1a-526a4da8653e')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 9</span>
+                </div>
+              </div>
+			  <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F10.jpg?alt=media&token=241121d9-0d21-4f54-a6f4-a1836703c2e0')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 10</span>
+                </div>
+              </div>
+			  <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F11.jpg?alt=media&token=ca6c9e20-3589-4564-aef6-5dd10884803d')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 11</span>
+                </div>
+              </div>
+			  <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F12.jpg?alt=media&token=fc6cafae-2162-40d0-b6ba-12473e359f72')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 12</span>
                 </div>
               </div>
             </Slide>
