@@ -59,6 +59,9 @@ function NavBar() {
               <Link to="/Projects">
                 <li>Projects</li>
               </Link>
+              <Link to="/news">
+                <li>News</li>
+              </Link>
             </ul>
           </div>
 

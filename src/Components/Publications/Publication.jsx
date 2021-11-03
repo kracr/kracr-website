@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Publication.scss";
+import "../../Page.scss";
 import db from "../../firebase";
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
@@ -36,8 +36,8 @@ function Publication() {
   }, [inputFilter, allPublications]);
 
   return (
-    <div className="publications">
-      <div className="publication-wrapper">
+    <div className="page">
+      <div className="page-wrapper">
         <div className="title">
           <div className="left">Publications</div>
           <div className="right">
@@ -56,7 +56,7 @@ function Publication() {
           <div className="Container">
             <div className="left">
               <div className="title">{publication.Title}</div>
-              <div className="author">{publication.Authors}</div>
+              <div className="subtitle">{publication.Authors}</div>
               <div className="description">{publication.Description}</div>
             </div>
             <div className="right">

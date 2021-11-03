@@ -8,6 +8,8 @@ import SimpleImageSlider from "react-simple-image-slider";
 import { Slide, Fade } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { Link } from "react-router-dom";
+import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
+import { NavigateBefore, NavigateNext } from "@material-ui/icons";
 
 function Home() {
   //Image SLider CODE BEGINS
@@ -22,6 +24,21 @@ function Home() {
   const [contactName, setContactName] = useState("");
   const [contactMessage, setContactMessage] = useState("");
   const [allProjects, setAllProjects] = useState([]);
+  const [allNews, setAllNews] = useState([]);
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+  useEffect(() => {
+    db.collection("News")
+      .orderBy("Date", "desc")
+      .limit(8)
+      .onSnapshot((snapshot) => {
+        setAllNews(
+            snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }))
+        );
+      });
+    }, []);
 
   //Getting the Projects
   useEffect(() => {
@@ -67,6 +84,27 @@ function Home() {
       return true;
     }
   };
+
+  function LeftArrow() {
+    const { isFirstItemVisible, scrollPrev } = React.useContext(VisibilityContext)
+  
+    return (
+      <div className="arrow left" onClick={() => scrollPrev()} >
+        <NavigateBefore disabled={isFirstItemVisible} />
+      </div>
+    );
+  }
+  
+  function RightArrow() {
+    const { isLastItemVisible, scrollNext } = React.useContext(VisibilityContext)
+  
+    return (
+      <div className="arrow right"  onClick={() => scrollNext()}>
+        <NavigateNext disabled={isLastItemVisible}/>
+      </div>
+    );
+  }
+  
 
   //Ending Contact Form Backend
 
@@ -325,6 +363,29 @@ function Home() {
           </div>
           <div className="more">
             <Link to="/Projects">Show More</Link>
+          </div>
+        </div>
+      </div>
+      <div className="News">
+        <div className="wrapper">
+          <div className="title">News</div>
+          <div className="tiles">
+            <div className="horizontalScroll">
+              {allNews.map(({id, news}) => {
+                var year = new Date(news.Date.seconds * 1000).getFullYear();
+                var month = monthNames[new Date(news.Date.seconds * 1000).getMonth()];
+                return(
+                <div itemId={id} className="item">
+                  <div className="item-title">{month + " " + year}</div>
+                  <div className="item-description">{news.Title}</div>
+                </div>)
+              }
+              ).slice(0, 4)}
+            </div>
+          </div>
+          
+          <div className="more">
+            <Link to="/News">Show More</Link>
           </div>
         </div>
       </div>

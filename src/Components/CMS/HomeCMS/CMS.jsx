@@ -4,6 +4,7 @@ import { Link, Switch, Route } from "react-router-dom";
 import TeamCMS from "../TeamCMS/TeamCMS";
 import PublicationCMS from "../PublicationCMS/PublicationCMS";
 import ProjectCMS from "../ProjectCMS/ProjectCMS";
+import NewsCMS from "../NewsCMS/NewsCMS";
 
 function CMS() {
   return (
@@ -19,6 +20,9 @@ function CMS() {
           <Link to="/CMS/projects">
             <li>Projects</li>
           </Link>
+          <Link to="/CMS/news">
+            <li>News</li>
+          </Link>
         </ul>
       </div>
       <div className="content">
@@ -31,6 +35,9 @@ function CMS() {
           </Route>
           <Route path="/CMS/projects">
             <ProjectCMS />
+          </Route>
+          <Route path="/CMS/news">
+            <NewsCMS />
           </Route>
         </Switch>
       </div>

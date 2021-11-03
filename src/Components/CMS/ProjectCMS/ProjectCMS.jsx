@@ -38,21 +38,21 @@ function ProjectCMS() {
 	    file === null
 		)
 		{	
-            db.collection("Projects").doc().set({
-              Title: title,
-              Description: description,
-              Authors: author,
-              PublicationURL: url,
-              Category: category,
-              GithubLink: github,
-              Year: year,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            });
-            setTitle("");
-            setDescription("");
-            setAuthor("");
-            setYear("");
-            setFile(null);
+      db.collection("Projects").doc().set({
+        Title: title,
+        Description: description,
+        Authors: author,
+        PublicationURL: url,
+        Category: category,
+        GithubLink: github,
+        Year: year,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      setTitle("");
+      setDescription("");
+      setAuthor("");
+      setYear("");
+      setFile(null);
 			setGithub("");
 			setURL("");
 
