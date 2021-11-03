@@ -3,10 +3,10 @@ $secodary-color: #0d0d0d;
 $secodary2-color: #d9d9d9;
 $accent-color: #f28f17;
 $accent2-color: #bf5b05;
-.publications {
+.page {
   margin-top: 150px;
   width: 100%;
-  .publication-wrapper {
+  .page-wrapper {
     width: 90%;
     margin: auto;
     padding: 30px 0px;
@@ -57,13 +57,13 @@ $accent2-color: #bf5b05;
     }
     .Container {
       width: 100%;
-      min-height: 100px;
       margin: 20px 0px;
       background-color: #fff !important;
       border-left: 3px solid $secodary2-color !important;
       padding: 10px;
       display: flex;
       justify-content: space-between;
+      text-align: justify;
       align-items: center;
       .left {
         .title {
@@ -71,7 +71,7 @@ $accent2-color: #bf5b05;
           font-weight: 700;
           color: $accent-color !important;
         }
-        .author {
+        .subtitle {
           padding: 2px 0px;
           font-size: 1rem;
           font-weight: 600;
@@ -91,3 +91,49 @@ $accent2-color: #bf5b05;
     }
   }
 }
+
+.collapsableCategory {
+  margin: 10px 0px;
+  .header {
+    display: flex;
+    .collapseButton {
+      border: none;
+      cursor: pointer;
+      padding: 0px 10px;
+    }
+  }
+  .title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    align-items: center;
+    display: flex;
+  }
+  .subtitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $accent-color !important;
+    align-items: center;
+    display: flex;
+  }
+
+  .body{
+    margin: 0px 20px;
+    display: block;
+  }
+  .body[aria-collapsed=true] {
+    display: none;
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0px;
+    background-color: #fff !important;
+    border-left: 3px solid $secodary2-color !important;
+    .content {
+      padding: 5px;
+      font-size: 1.2rem;
+    }
+  }
+}
+

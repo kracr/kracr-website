@@ -9,7 +9,9 @@ import Footer from "./Components/Footer/Footer";
 import HomeCMS from "./Components/CMS/HomeCMS/CMS";
 import LoginCMS from "./Components/CMS/LoginCMS/LoginCMS";
 import Project from "./Components/Projects/Project";
+import News from "./Components/News/News";
 import { useSelector } from "react-redux";
+import Chatbot from "./Components/Chatbot/chatbot";
 
 function App() {
   const user = useSelector((state) => state.isLogged);
@@ -40,8 +42,14 @@ function App() {
               <Route path="/publications" exact>
                 <Publications />
               </Route>
+              <Route path="/projects/chatbot" exact>
+                <Chatbot />
+              </Route>
               <Route path="/projects" exact>
                 <Project />
+              </Route>
+              <Route path="/news" exact>
+                <News />
               </Route>
             </Switch>
             <Footer />

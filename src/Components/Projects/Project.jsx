@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./Project.scss";
+import "../../Page.scss";
 import db from "../../firebase";
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 function Project() {
-  const [allPublications, setAllPublications] = useState([]);
+  const [allProjects, setAllProjects] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [inputFilter, SetInputFilter] = useState("");
 
@@ -21,8 +21,8 @@ function Project() {
     db.collection("Projects")
       .orderBy("Title", "asc")
       .onSnapshot((snapshot) => {
-        setAllPublications(
-          snapshot.docs.map((doc) => ({ id: doc.id, publication: doc.data() }))
+        setAllProjects(
+          snapshot.docs.map((doc) => ({ id: doc.id, project: doc.data() }))
         );
         snapshot.docs.map((doc) => {
           if (doc.data().Category == "Ontology Modelling and Enrichment") {
@@ -43,24 +43,24 @@ function Project() {
   }, []);
 
   useEffect(() => {
-    const tempList = allPublications.filter(({ id, publication }) => {
+    const tempList = allProjects.filter(({ id, project }) => {
       return (
-        publication.Title.toLowerCase().indexOf(inputFilter.toLowerCase()) !==
+        project.Title.toLowerCase().indexOf(inputFilter.toLowerCase()) !==
           -1 ||
-        publication.Description.toLowerCase().indexOf(
+        project.Description.toLowerCase().indexOf(
           inputFilter.toLowerCase()
         ) !== -1 ||
-        publication.Authors.toLowerCase().indexOf(inputFilter.toLowerCase()) !==
+        project.Authors.toLowerCase().indexOf(inputFilter.toLowerCase()) !==
           -1 ||
-        publication.Year.toLowerCase().indexOf(inputFilter.toLowerCase()) !== -1
+        project.Year.toLowerCase().indexOf(inputFilter.toLowerCase()) !== -1
       );
     });
     setFilteredData(tempList);
-  }, [inputFilter, allPublications]);
+  }, [inputFilter, allProjects]);
 
   return (
-    <div className="publications">
-      <div className="publication-wrapper">
+    <div className="page">
+      <div className="page-wrapper">
         <div className="title">
           <div className="left">Projects</div>
           <div className="right">
@@ -84,22 +84,22 @@ function Project() {
 
           {filteredData
             ?.filter(
-              ({ id, publication }) =>
-                publication.Category == "Ontology Modelling and Enrichment"
+              ({ id, project }) =>
+                project.Category == "Ontology Modelling and Enrichment"
             )
-            .map(({ id, publication }) => (
+            .map(({ id, project }) => (
               <div className="Container">
                 <div className="left">
-                  <div className="title">{publication.Title}</div>
-                  <div className="author">{publication.Authors}</div>
-                  <div className="description">{publication.Description}</div>
-				  {publication?.GithubLink == "" ?    <> < />  : (<IconButton 
-                onClick={() => window.open(`${publication.GithubLink}`)}>
+                  <div className="title">{project.Title}</div>
+                  <div className="subtitle">{project.Authors}</div>
+                  <div className="description">{project.Description}</div>
+				  {project?.GithubLink == "" ?    <> < />  : (<IconButton 
+                onClick={() => window.open(`${project.GithubLink}`)}>
                 <GitHubIcon />
                 </IconButton>)}
 				
-				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton 
-                onClick={() => window.open(`${publication.PublicationURL}`)}>
+				{project?.PublicationURL == "" ?    <> < />  : (<IconButton 
+                onClick={() => window.open(`${project.ProjePublicationURLctURL}`)}>
                 <Description />
                 </IconButton>)}
                 
@@ -118,22 +118,22 @@ function Project() {
 
           {filteredData
             ?.filter(
-              ({ id, publication }) =>
-                publication.Category == "Description Logic Reasoning"
+              ({ id, project }) =>
+                project.Category == "Description Logic Reasoning"
             )
-            .map(({ id, publication }) => (
+            .map(({ id, project }) => (
               <div className="Container">
                 <div className="left">
-                  <div className="title">{publication.Title}</div>
-                  <div className="author">{publication.Authors}</div>
-                  <div className="description">{publication.Description}</div>
-				   {publication?.GithubLink == "" ?    <> < />  : (<IconButton
-                onClick={() => window.open(`${publication.GithubLink}`)}>
+                  <div className="title">{project.Title}</div>
+                  <div className="author">{project.Authors}</div>
+                  <div className="description">{project.Description}</div>
+				   {project?.GithubLink == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${project.GithubLink}`)}>
                 <GitHubIcon />
                 </IconButton>)}
 				
-				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
-                onClick={() => window.open(`${publication.PublicationURL}`)}>
+				{project?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${project.PublicationURL}`)}>
                 <Description />
                 </IconButton>)}
                 </div>
@@ -146,22 +146,22 @@ function Project() {
 
           {filteredData
             ?.filter(
-              ({ id, publication }) =>
-                publication.Category == "Knowledge Graphs"
+              ({ id, project }) =>
+                project.Category == "Knowledge Graphs"
             )
-            .map(({ id, publication }) => (
+            .map(({ id, project }) => (
               <div className="Container">
                 <div className="left">
-                  <div className="title">{publication.Title}</div>
-                  <div className="author">{publication.Authors}</div>
-                  <div className="description">{publication.Description}</div>
-				   {publication?.GithubLink == "" ?    <> < />  : (<IconButton
-                onClick={() => window.open(`${publication.GithubLink}`)}>
+                  <div className="title">{project.Title}</div>
+                  <div className="author">{project.Authors}</div>
+                  <div className="description">{project.Description}</div>
+				   {project?.GithubLink == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${project.GithubLink}`)}>
                 <GitHubIcon />
                 </IconButton>)}
 				
-				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
-                onClick={() => window.open(`${publication.PublicationURL}`)}>
+				{project?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${project.PublicationURL}`)}>
                 <Description />
                 </IconButton>)}
                 </div>
@@ -174,21 +174,21 @@ function Project() {
 
           {filteredData
             ?.filter(
-              ({ id, publication }) => publication.Category == "SPARQL Querying"
+              ({ id, project }) => project.Category == "SPARQL Querying"
             )
-            .map(({ id, publication }) => (
+            .map(({ id, project }) => (
               <div className="Container">
                 <div className="left">
-                  <div className="title">{publication.Title}</div>
-                  <div className="author">{publication.Authors}</div>
-                  <div className="description">{publication.Description}</div>
-				   {publication?.GithubLink == "" ?    <> < />  : (<IconButton
-                onClick={() => window.open(`${publication.GithubLink}`)}>
+                  <div className="title">{project.Title}</div>
+                  <div className="author">{project.Authors}</div>
+                  <div className="description">{project.Description}</div>
+				   {project?.GithubLink == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${project.GithubLink}`)}>
                 <GitHubIcon />
                 </IconButton>)}
 				
-				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
-                onClick={() => window.open(`${publication.PublicationURL}`)}>
+				{project?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${project.PublicationURL}`)}>
                 <Description />
                 </IconButton>)}
                 </div>
@@ -200,22 +200,22 @@ function Project() {
           {typeE ? <div className="title">Semantic Web Applications</div> : ""}
           {filteredData
             ?.filter(
-              ({ id, publication }) =>
-                publication.Category == "Semantic Web Applications"
+              ({ id, project }) =>
+                project.Category == "Semantic Web Applications"
             )
-            .map(({ id, publication }) => (
+            .map(({ id, project }) => (
               <div className="Container">
                 <div className="left">
-                  <div className="title">{publication.Title}</div>
-                  <div className="author">{publication.Authors}</div>
-                  <div className="description">{publication.Description}</div>
-				   {publication?.GithubLink == "" ?    <> < />  : (<IconButton
-                onClick={() => window.open(`${publication.GithubLink}`)}>
+                  <div className="title">{project.Title}</div>
+                  <div className="author">{project.Authors}</div>
+                  <div className="description">{project.Description}</div>
+				   {project?.GithubLink == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${project.GithubLink}`)}>
                 <GitHubIcon />
                 </IconButton>)}
 				
-				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
-                onClick={() => window.open(`${publication.PublicationURL}`)}>
+				{project?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${project.PublicationURL}`)}>
                 <Description />
                 </IconButton>)}
                 </div>
@@ -226,20 +226,20 @@ function Project() {
         <div className="collapsableCategory">
           {typeF ? <div className="title">Others</div> : ""}
           {filteredData
-            ?.filter(({ id, publication }) => publication.Category == "Others")
-            .map(({ id, publication }) => (
+            ?.filter(({ id, project }) => project.Category == "Others")
+            .map(({ id, project }) => (
               <div className="Container">
                 <div className="left">
-                  <div className="title">{publication.Title}</div>
-                  <div className="author">{publication.Authors}</div>
-                  <div className="description">{publication.Description}</div>
-				   {publication?.GithubLink == "" ?    <> < />  : (<IconButton
-                onClick={() => window.open(`${publication.GithubLink}`)}>
+                  <div className="title">{project.Title}</div>
+                  <div className="author">{project.Authors}</div>
+                  <div className="description">{project.Description}</div>
+				   {project?.GithubLink == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${project.GithubLink}`)}>
                 <GitHubIcon />
                 </IconButton>)}
 				
-				{publication?.PublicationURL == "" ?    <> < />  : (<IconButton
-                onClick={() => window.open(`${publication.PublicationURL}`)}>
+				{project?.PublicationURL == "" ?    <> < />  : (<IconButton
+                onClick={() => window.open(`${project.PublicationURL}`)}>
                 <Description />
                 </IconButton>)}
                 </div>
