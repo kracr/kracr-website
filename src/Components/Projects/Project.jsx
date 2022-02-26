@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../Page.scss";
+import { Link } from "react-router-dom";
 import db from "../../firebase";
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
@@ -92,7 +93,12 @@ function Project() {
                 <div className="left">
                   <div className="title">{project.Title}</div>
                   <div className="subtitle">{project.Authors}</div>
-                  <div className="description">{project.Description}</div>
+                  <div className="description">{project.Description}
+                  <Link to="/Projects/specific" style={{ textDecoration: "none" }}>
+                  <a className="more"> ...View more</a>
+                  </Link>
+                  </div>
+                  
 				  {project?.GithubLink == "" ?    <> < />  : (<IconButton 
                 onClick={() => window.open(`${project.GithubLink}`)}>
                 <GitHubIcon />
