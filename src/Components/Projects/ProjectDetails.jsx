@@ -12,19 +12,20 @@ function ProjectDetails() {
     const [projectData, setProjectData] = useState([]);
 
       useEffect(()=>{
-          axios.get(`http://localhost:5000/project`).then(res=>{
+          axios.get(`http://localhost:5000/project/6218f5af94bbf68e2c1f0000`).then(res=>{
               setProjectData(res.data);
-              console.log(res.data[0].title);
+              // console.log(res.data[0].title);
             });
-      }, [])
+            
+      }, []);
     return(
     <div className="page">
       <div className="page-wrapper">
           <div className="title">
-          <div className="left">{projectData[0].title}</div>
+          <div className="left">{projectData.title}</div>
           </div>
           <div className="collapsableCategory">
-          <div className="title">{projectData[0].description}</div>
+          <div className="title">{projectData.description}</div>
           </div>
         
       </div>
