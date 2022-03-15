@@ -49,9 +49,7 @@ function App() {
               <Route path="/projects" exact>
                 <Project />
               </Route>
-              <Route path="/projects/specific" exact>
-                <ProjectDetails />
-              </Route>
+              <Route path="/projects/:id" exact component={ProjectDetails} />
               <Route path="/news" exact>
                 <News />
               </Route>
