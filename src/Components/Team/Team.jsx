@@ -12,6 +12,7 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import db from "../../firebase";
+import axios from 'axios';
 
 function Team() {
   const [viewCollab, setViewCollab] = useState(false);
@@ -24,28 +25,30 @@ function Team() {
   const [nAlumni, setNAlumni] = useState(false);
 
   useEffect(() => {
-    db.collection("TeamMembers")
-      .orderBy("Name", "asc")
-      .onSnapshot((snapshot) => {
+    // db.collection("TeamMembers")
+    //   .orderBy("Name", "asc")
+    //   .onSnapshot((snapshot) => {
+      axios.get('http://localhost:5000/team').then((snapshot)=>{
+        // axios.post(`http://localhost:5000/team/import`,snapshot.docs.map((doc) => ({ id: doc.id, team: doc.data() })));
         setAllMembers(
-          snapshot.docs.map((doc) => ({ id: doc.id, member: doc.data() }))
+          snapshot.data.map((doc) => ({ id: doc.id, member: doc }))
         );
-        snapshot.docs.map((doc) => {
-          if (doc.data().Position == "Faculty") {
+        snapshot.data.map((doc) => {
+          if (doc.Position == "Faculty") {
             setNFaculty(true);
-          } else if (doc.data().Position == "Intern") {
+          } else if (doc.Position == "Intern") {
             setNRA(true);
-          } else if (doc.data().Position == "RA") {
+          } else if (doc.Position == "RA") {
             setNRA(true);
-          } else if (doc.data().Position == "PhD") {
+          } else if (doc.Position == "PhD") {
             setNPhd(true);
-          } else if (doc.data().Position == "Masters") {
+          } else if (doc.Position == "Masters") {
             setNMTECH(true);
-          } else if (doc.data().Position == "BTech") {
+          } else if (doc.Position == "BTech") {
             setNBtech(true);
-          } else if (doc.data().Position == "Alumni") {
+          } else if (doc.Position == "Alumni") {
             setNAlumni(true);
-		  } else if (doc.data().Position == "Collaborator") {
+		  } else if (doc.Position == "Collaborator") {
             setViewCollab(true);
           }
         });
