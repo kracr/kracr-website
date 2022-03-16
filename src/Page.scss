@@ -79,8 +79,13 @@ $accent2-color: #bf5b05;
           color: $secodary-color !important;
         }
         .description {
+          overflow: hidden;
           padding: 5px 0px;
           font-size: 1.2rem;
+          display: -webkit-box;
+          -webkit-line-clamp: 3; /* number of lines to show */
+          -webkit-box-orient: vertical;
+          
         }
         .more {
           padding: 5px 0px;
