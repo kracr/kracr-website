@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../Page.scss";
 import db from "../../firebase";
+import axios from 'axios';
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
@@ -11,13 +12,19 @@ function Publication() {
   const [inputFilter, SetInputFilter] = useState("");
 
   useEffect(() => {
-    db.collection("Publications")
-      .orderBy("Year", "desc")
-      .onSnapshot((snapshot) => {
-        setAllPublications(
-          snapshot.docs.map((doc) => ({ id: doc.id, publication: doc.data() }))
-        );
-      });
+    // db.collection("Publications")
+    //   .orderBy("Year", "desc")
+    //   .onSnapshot((snapshot) => {
+    //     // axios.post(`http://localhost:5000/publications/import`,snapshot.docs.map((doc) => ({ id: doc.id, publications: doc.data() })));
+    //     setAllPublications(
+    //       snapshot.docs.map((doc) => ({ id: doc.id, publication: doc.data() }))
+    //     );
+    //   });
+    axios.get('http://localhost:5000/publications').then(res=>{
+      setAllPublications(
+        res.data.map((doc)=>({id:doc._id,publication:doc}))
+      )
+    });
   }, []);
 
   useEffect(() => {
