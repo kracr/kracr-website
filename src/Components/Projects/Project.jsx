@@ -97,7 +97,7 @@ function Project() {
                   <div className="subtitle">{project.authors}</div>
                   <div className="description">{project.description}
                   <Link to={`Projects/${project._id}`} style={{ textDecoration: "none" }}>
-                  <a className="more"> ...View more</a>
+                  <a className="more"> View more</a>
                   </Link>
                   </div>
                   
