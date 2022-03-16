@@ -68,13 +68,13 @@ function ProjectDetails() {
             Authors
           </Typography>
           {projectData.authors && 
-            projectData.authors.map((x)=>
-            {
-              console.log(x);
-              return(
-            <Typography>{x}</Typography>)
-            }
-            )
+            // projectData.authors.map((x)=>
+            // {
+            //   console.log(x);
+            //   return(
+            <Typography>{projectData.authors}</Typography>
+            // }
+            // )
           
         }
         </CardContent>
