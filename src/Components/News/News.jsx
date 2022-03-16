@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ExpandMore, ExpandLess, NavigateBefore, NavigateNext, DoubleArrow, Flag } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
-
+import axios from 'axios';
 function News() {
     const [allNews, setAllNews] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -14,13 +14,24 @@ function News() {
   ];
   
   useEffect(() => {
-      db.collection("News")
-        .orderBy("Date", "desc")
-        .onSnapshot((snapshot) => {
-          setAllNews(
-              snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }))
-          );
-        });
+      // db.collection("News")
+      //   .orderBy("Date", "desc")
+      //   .onSnapshot((snapshot) => {
+      //     let check = snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }));
+      //     console.log("checkinggg",check);
+      //     let check2 = check.map((doc) => ({ id: doc.id, news: {Date:doc.news.Date.toDate(),Title:doc.news.Title}}));
+      //     // axios.post(`http://localhost:5000/news/import`,check2);
+      //     setAllNews(
+      //         snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }))
+      //     );
+      //   });
+      axios.get('http://localhost:5000/news').then((news)=>{
+        setAllNews(
+          news.data.map((one)=>
+            ({id:one._id,news:one})
+          )
+        );
+      })
       }, []);
 
   useEffect(() => {
@@ -28,7 +39,7 @@ function News() {
         return (
           news.Title.toLowerCase().indexOf(inputFilter.toLowerCase()) !==
             -1 ||
-          (monthNames[new Date(news.Date.seconds * 1000).getMonth()] + " " + new Date(news.Date.seconds * 1000).getFullYear()).toLowerCase().indexOf(inputFilter.toLowerCase()) !==
+          (monthNames[new Date(news.Date).getMonth()] + " " + new Date(news.Date).getFullYear()).toLowerCase().indexOf(inputFilter.toLowerCase()) !==
             -1
         );
       });
@@ -40,8 +51,8 @@ function News() {
 
     var tempNestedNews = {}
     filteredData?.forEach(({id, news}) => {
-      var year = new Date(news.Date.seconds * 1000).getFullYear();
-      var month = new Date(news.Date.seconds * 1000).getMonth();
+      var year = new Date(news.Date).getFullYear();
+      var month = new Date(news.Date).getMonth();
       if(!tempNestedNews[year]) {
         tempNestedNews[year] = {
           title: year,
