@@ -233,7 +233,7 @@ function Home() {
               <div className="each-slide">
                 <div
                   style={{
-                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F3.jpg?alt=media&token=6bd325f0-b11c-4c1b-9688-2a8bfed17dde')`,
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F13.jpg?alt=media&token=e4406585-1ba8-4076-a895-c5464979b3b8')`,
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                   }}
@@ -338,6 +338,17 @@ function Home() {
                   }}
                 >
                   <span>Slide 12</span>
+                </div>
+              </div>
+        <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/kracr-website.appspot.com/o/slideshow%2F3.jpg?alt=media&token=6bd325f0-b11c-4c1b-9688-2a8bfed17dde')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 13</span>
                 </div>
               </div>
             </Slide>
