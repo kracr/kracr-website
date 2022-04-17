@@ -6,6 +6,7 @@ import db from "../../../firebase";
 import firebase from "firebase";
 import { DeleteForever, Description } from "@material-ui/icons";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import MultiImageInput from 'react-multiple-image-input';
 
 function ProjectCMS() {
   //Getting Team Members
@@ -27,6 +28,9 @@ function ProjectCMS() {
   const [author, setAuthor] = useState("");
   const [year, setYear] = useState("");
   const [github, setGithub] = useState("");
+  const [formValues, setFormValues] = useState([{ name: "", email : "", images : {}}]);
+  const [images, setImages] = useState({});
+  const [images2, setImages2] = useState({});
 
   const addTeamMember = async (e) => {
     e.preventDefault();
@@ -94,9 +98,33 @@ function ProjectCMS() {
 	}
 	}
   };
+let handleChangeinForm = (i, e) => {
+    let newFormValues = [...formValues];
+    newFormValues[i][e.target.name] = e.target.value;
+    // newFormValues[i][images] = images2
+    setFormValues(newFormValues);
+  }
+let handleChangeinImages = (i, e) => {
+  let newFormValues = [...formValues];
+    newFormValues[i][images] = e;
+    setFormValues(newFormValues);
+}
+let addFormFields = () => {
+    setFormValues([...formValues, { name: "", email: "" , images: {}}])
+  }
 
+let removeFormFields = (i) => {
+    let newFormValues = [...formValues];
+    newFormValues.splice(i, 1);
+    setFormValues(newFormValues)
+}
   //Deleting Member
 
+  const crop = {
+    unit: '%',
+    aspect: 4 / 3,
+    width: '100'
+  };
   const deleteMember = (id) => {
     db.collection("Projects").doc(id).delete();
   };
@@ -161,11 +189,11 @@ function ProjectCMS() {
 
   //DROP DOWN MENU ENDS
   return (
-    <div className="publicationCMSwrapper">
+    <div className="projectCMSwrapper">
       <div className="addMember">
         <div className="title">Add Projects</div>
         <form action="">
-          <div>
+          <div >
             <input
               type="text"
               value={title}
@@ -250,10 +278,43 @@ function ProjectCMS() {
             ></input>
             <span className="border"></span>
           </div>
+          
+          
+          <label>Main Images</label>
+          <MultiImageInput allowCrop={false}
+            images={images}
+            setImages={setImages}
+          />
+          
 
-          <div>
-            <button onClick={addTeamMember}>Add</button>
+
+          {formValues.map((element, index) => (
+            // <div className="subheading">
+            <div className="form-inline" key={index}>
+              <input type="text" name="subheading" placeholder="Subheading" value={element.name || ""} onChange={e => handleChangeinForm(index, e)} />
+              <input type="text" name="subheadingdetails" placeholder="Details" value={element.email || ""} onChange={e => handleChangeinForm(index, e)} />
+              <label>Sub Images</label>
+              <MultiImageInput allowCrop={false}
+                images={element.images}
+                setImages={setImages2}
+
+              />
+              {
+                index ? 
+                  <button type="button"  className="button remove" onClick={() => removeFormFields(index)}>Remove</button> 
+                : null
+              }
+            </div>
+            // </div>
+          ))}
+          
+          <div className="button-section">
+              <button className="button add" type="button" onClick={() => addFormFields()}>Add subheading</button>
           </div>
+          <div className="button-section">
+            <button className="button project" onClick={addTeamMember}>Add</button>
+          </div>
+
         </form>
       </div>
       {allpublications?.map(({ id, publication }) => (
@@ -263,7 +324,7 @@ function ProjectCMS() {
               <Description />
             </a>
           </div>
-          <div className="data">
+          <div className="data" s>
             <div className="title">
               {publication.Title}, {publication.Authors}
             </div>

@@ -13,11 +13,11 @@ function LoginCMS() {
   useEffect(() => {}, [passInput]);
 
   const signIn = () => {
-    if (passInput === REACT_APP_Pass) {
+    // if (passInput === REACT_APP_Pass) {
       dispatch(setUserSignedIn(true));
-    } else {
-      window.alert("Wrong Pass!! Please Try Again");
-    }
+    // } else {
+    //   window.alert("Wrong Pass!! Please Try Again");
+    // }
   };
 
   return (

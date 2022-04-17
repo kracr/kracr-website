@@ -5,6 +5,7 @@ import { storage } from "../../../firebase";
 import db from "../../../firebase";
 import firebase from "firebase";
 import { DeleteForever, Description } from "@material-ui/icons";
+import axios from 'axios';
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 
 function NewsCMS() {
@@ -15,18 +16,31 @@ function NewsCMS() {
 ];
 
   useEffect(() => {
-    db.collection("News")
-      .orderBy("Date", "desc")
-      .onSnapshot((snapshot) => {
-        setAllNews(
-          snapshot.docs.map((doc) => {
-            var year = new Date(doc.data().Date.seconds * 1000).getFullYear();
-            var month = monthNames[new Date(doc.data().Date.seconds * 1000).getMonth()];
-                  
-            return ({ id: doc.id, title: doc.data().Title, date: `${month} ${year}` })
-            })
-        );
-      });
+    axios.get('http://localhost:5000/news').then((news)=>{
+      setAllNews(
+        news.data.map((one)=>
+        {
+          var year = new Date(one.Date).getFullYear();
+          var month = monthNames[new Date(one.Date).getMonth()];
+                  console.log(one.Title);
+            return ({ id: one._id, title: one.Title, date: `${month} ${year}` })
+        }
+          
+        )
+      );
+    })
+    // db.collection("News")
+    //   .orderBy("Date", "desc")
+    //   .onSnapshot((snapshot) => {
+    //     setAllNews(
+    //       snapshot.docs.map((doc) => {
+    //         var year = new Date(doc.data().Date.seconds * 1000).getFullYear();
+    //         var month = monthNames[new Date(doc.data().Date.seconds * 1000).getMonth()];
+    //               console.log(doc.data().Title);
+    //         return ({ id: doc.id, title: doc.data().Title, date: `${month} ${year}` })
+    //         })
+    //     );
+    //   });
   }, []);
 
   const [title, setTitle] = useState("");
@@ -44,10 +58,15 @@ function NewsCMS() {
       window.alert("Please fill News and Date");
     } else {
 		e.preventDefault();
-    db.collection("News").doc().set({
-      Title: title,
-      Date: firebase.firestore.Timestamp.fromDate(new Date(date)),
-    });
+    const payload = {
+      Title: title, 
+      Date: date
+    }
+    axios.post(`http://localhost:5000/news/add/`, payload).then(res=>{window.alert("News Added")})
+    // db.collection("News").doc().set({
+    //   Title: title,
+    //   Date: firebase.firestore.Timestamp.fromDate(new Date(date)),
+    // });
     setTitle("");
     setDate("");
 	}

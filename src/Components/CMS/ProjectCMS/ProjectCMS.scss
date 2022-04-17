@@ -1,27 +1,36 @@
-.publicationCMSwrapper {
+$primary-color: #a63f04;
+$secodary-color: #0d0d0d;
+$secodary2-color: #d9d9d9;
+$accent-color: #f28f17;
+$accent2-color: #bf5b05;
+
+.projectCMSwrapper {
   display: flex;
   padding: 20px;
   flex-wrap: wrap;
   .addMember {
-    background: rgba(225, 225, 225, 0.1);
+    background: $secodary2-color !important;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
     width: 100%;
-    height: 200px;
+    height:auto;
     display: flex;
     padding: 20px;
     border-radius: 10px;
     margin: 10px;
     .title {
       font-size: 1.8rem;
+      color: $secodary-color !important;
     }
     form {
       width: 100%;
+      color: $secodary-color !important;
       div {
         margin: 5px;
-        display: inline-block;
+        display:flow-root;
+        width: 200px;
         position: relative;
         input {
           background: transparent;
@@ -30,7 +39,7 @@
           font-size: 1rem;
           padding: 10px 0px;
           width: 100%;
-          color: #fff;
+          color: $secodary-color !important;
           &:focus {
             outline: none;
           }
@@ -40,10 +49,70 @@
           position: absolute;
           height: 3px;
           width: 100%;
-          background: #fff;
+          background: $secodary-color !important;
           transform: scaleX(0);
           transition: transform 0.5s;
           transform-origin: 0% 50%;
+        }
+        .form-inline {  
+          display: flex;
+          flex-flow: row wrap;
+          align-items: center;
+        }
+        .form-inline label {
+          margin: 5px 10px 5px 0;
+        }
+      
+        .form-inline input {
+          vertical-align: middle;
+          margin: 5px 10px 5px 0;
+          padding: 10px;
+          background-color: #fff;
+          border: 1px solid #ddd;
+        }
+      
+        .button-section {
+          margin: 3%;
+        }
+        .button {
+          padding: 10px 20px;
+          background-color: dodgerblue;
+          border: 1px solid #ddd;
+          color: white;
+          cursor: pointer;
+        }
+      
+        .button:hover {
+          background-color: royalblue;
+        }
+        .project{
+          padding: 10px 20px;
+          background-color: orange;
+          border: 1px solid #ddd;
+          color: white;
+          cursor: pointer;
+        }
+        .project:hover{
+          background-color: orangered;
+        }
+        .remove {
+          background-color: rgb(192, 53, 53);
+        }
+        .remove:hover {
+          background-color: rgb(187, 43, 43);
+        }
+        .subheading {
+          display: list-item;
+          position: absolute;
+          height: 3px;
+          width: 100%;
+          background: pink;
+          transform: scaleX(0);
+          transition: transform 0.5s;
+          transform-origin: 0% 50%;
+          
+        
+
         }
         input:focus + .border,
         &:focus .border {
@@ -54,7 +123,7 @@
   }
   .Publication {
     margin: 10px;
-    background: rgba(225, 225, 225, 0.1);
+    background: $secodary2-color !important;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -70,7 +139,7 @@
       justify-content: center;
       align-items: center;
       a {
-        color: #fff;
+        color: $secodary-color !important;
       }
     }
     .data {
@@ -79,10 +148,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: auto;
+      color: $secodary-color !important;
 
       .title {
         font-size: 1.2rem;
         padding: 0px 20px;
+        color: $secodary-color !important;
       }
       .delete {
         color: #f4817e;
@@ -94,3 +166,4 @@
     }
   }
 }
+

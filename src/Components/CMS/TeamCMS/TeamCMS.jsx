@@ -8,17 +8,24 @@ import firebase from "firebase";
 import { DeleteForever } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import TeamCMSMember from "./TeamCMSMember";
+import axios from "axios";
 
 function TeamCMS() {
   //Getting Team Members
   const [teamMembers, setTeamMembers] = useState([]);
 
   useEffect(() => {
-    db.collection("TeamMembers").onSnapshot((snapshot) => {
+    axios.get('http://localhost:5000/team').then((team)=>{
       setTeamMembers(
-        snapshot.docs.map((doc) => ({ id: doc.id, member: doc.data() }))
+        team.data.map((one)=> ({ id: one._id, member: one }))
       );
-    });
+    })
+    // db.collection("TeamMembers").onSnapshot((snapshot) => {
+    //   setTeamMembers(
+
+    //     snapshot.docs.map((doc) => ({ id: doc.id, member: doc.data() }))
+    //   );
+    // });
   }, []);
 
   //Adding Team Members
@@ -46,19 +53,32 @@ function TeamCMS() {
 	    file === null
 		)
 		{
-			 db.collection("TeamMembers").doc().set({
+      const payload = {
               Name: name,
               Interests: interest,
               Designation: designation,
               Position: category,
-			  webpageLink: webpage,
+			        webpageLink: webpage,
               githubLink: github,
               twitterLink: twitter,
               linkedinLink: linkedin,
               Mail: mail,
-              ImageURL: url,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            });
+              ImageURL: url
+      }
+      axios.post(`http://localhost:5000/team/add/`, payload).then(res=>{window.alert("New Member Added")})
+			//  db.collection("TeamMembers").doc().set({
+      //         Name: name,
+      //         Interests: interest,
+      //         Designation: designation,
+      //         Position: category,
+			//   webpageLink: webpage,
+      //         githubLink: github,
+      //         twitterLink: twitter,
+      //         linkedinLink: linkedin,
+      //         Mail: mail,
+      //         ImageURL: url,
+      //         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      //       });
             setName("");
             setInterest("");
 			setWebpage("");
@@ -83,19 +103,32 @@ function TeamCMS() {
             setFile(null);
             setURL(url);
             const uploadTask = storage.ref(`/Team/${file.name}`).put(file);
-            db.collection("TeamMembers").doc().set({
+            const payload = {
               Name: name,
               Interests: interest,
               Designation: designation,
               Position: category,
-			  webpageLink: webpage,
+			        webpageLink: webpage,
               githubLink: github,
               twitterLink: twitter,
               linkedinLink: linkedin,
               Mail: mail,
-              ImageURL: url,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            });
+              ImageURL: url
+      }
+      axios.post(`http://localhost:5000/team/add/`, payload).then(res=>{window.alert("New Member Added")})
+        //     db.collection("TeamMembers").doc().set({
+        //       Name: name,
+        //       Interests: interest,
+        //       Designation: designation,
+        //       Position: category,
+			  // webpageLink: webpage,
+        //       githubLink: github,
+        //       twitterLink: twitter,
+        //       linkedinLink: linkedin,
+        //       Mail: mail,
+        //       ImageURL: url,
+        //       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        //     });
             setName("");
             setInterest("");
 			setWebpage("");

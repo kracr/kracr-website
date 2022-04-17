@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import ImageGallery from 'react-image-gallery';
 import "../../Page.scss";
+// import * as op from '../../Assets';
 import {
     Typography,
     CardContent,
@@ -10,6 +11,7 @@ import {
     Paper
   } from "@material-ui/core";
 import { useParams } from "react-router";
+const iconPath = process.env.PUBLIC_URL + '/Assets/';
 
 function ProjectDetails() {
 
@@ -37,7 +39,7 @@ function ProjectDetails() {
               setProjectData(res.data);
               console.log(res.data);  
             });
-            
+            console.log(iconPath);
       }, []);
     return(
     <div className="project-page">
@@ -51,7 +53,7 @@ function ProjectDetails() {
           <div className="description">{projectData.description}</div>
           <div>
           <div className="subtitle">Sub Heading </div>
-          <img className="sub-image" src={"https://picsum.photos/id/1018/1000/600/"} alt={"Carlie Anglemire"}/>
+          <img className="sub-image" src={`${iconPath}showshow.jpg`} alt={"Carlie Anglemire"}/>
           <div className="description">More Description</div>
           </div>
           <Card style={{
