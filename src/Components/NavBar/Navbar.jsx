@@ -62,6 +62,9 @@ function NavBar() {
               <Link to="/news">
                 <li>News</li>
               </Link>
+              <Link to="/joinus">
+                <li>Join Us</li>
+              </Link>
             </ul>
           </div>
 

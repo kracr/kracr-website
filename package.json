@@ -23,6 +23,7 @@
     "react-image-gallery": "^1.2.7",
     "react-multiple-image-input": "^1.0.0",
     "react-particles-js": "^3.4.1",
+    "react-perfect-scrollbar": "^1.5.8",
     "react-redux": "^7.2.2",
     "react-resize-image": "^1.0.4",
     "react-router": "^5.2.0",

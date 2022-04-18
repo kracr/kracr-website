@@ -7,19 +7,34 @@ import firebase from "firebase";
 import { DeleteForever, Description } from "@material-ui/icons";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import MultiImageInput from 'react-multiple-image-input';
+import  axios from "axios";
 
 function ProjectCMS() {
   //Getting Team Members
   const [allpublications, setAllPublications] = useState([]);
 
   useEffect(() => {
-    db.collection("Projects")
-      .orderBy("Title", "asc")
-      .onSnapshot((snapshot) => {
-        setAllPublications(
-          snapshot.docs.map((doc) => ({ id: doc.id, publication: doc.data() }))
-        );
-      });
+    // db.collection("Projects")
+    //   .orderBy("Title", "asc")
+    //   .onSnapshot((snapshot) => {
+    //     setAllPublications(
+    //       snapshot.docs.map((doc) => ({ id: doc.id, publication: doc.data() }))
+    //     );
+    //   });
+    console.log(formValues);
+    axios.get('http://localhost:5000/project').then((projects)=>{
+      setAllPublications(
+        projects.data.map((one)=>
+        {
+          // var year = new Date(one.Date).getFullYear();
+          // var month = monthNames[new Date(one.Date).getMonth()];
+                  // console.log(one,"hello");
+            return ({ id: one._id, publication: one })
+        }
+          
+        )
+      );
+    })
   }, []);
 
   //Adding Team Members
@@ -28,89 +43,138 @@ function ProjectCMS() {
   const [author, setAuthor] = useState("");
   const [year, setYear] = useState("");
   const [github, setGithub] = useState("");
-  const [formValues, setFormValues] = useState([{ name: "", email : "", images : {}}]);
-  const [images, setImages] = useState({});
+  const [formValues, setFormValues] = useState([{ subheading: "", subheadingdetails : "", images : []}]);
+  // const [sections, setSections] = useState([{subheading:"", description : "", images : []}]);
+  const [images, setImages] = useState([]);
+  const [imgUrl,setimgUrl] = useState([]);
   const [images2, setImages2] = useState({});
 
-  const addTeamMember = async (e) => {
+  const addTeamMember = async(e) => {
     e.preventDefault();
     if (title === "" || description === "") {
       window.alert("Please fill Title and Description");
     } else {
-		e.preventDefault();
-		if (
-	    file === null
-		)
-		{	
-      db.collection("Projects").doc().set({
-        Title: title,
-        Description: description,
-        Authors: author,
-        PublicationURL: url,
-        Category: category,
-        GithubLink: github,
-        Year: year,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-      setTitle("");
-      setDescription("");
-      setAuthor("");
-      setYear("");
-      setFile(null);
-			setGithub("");
-			setURL("");
-
-          }
-	
-	else {
-      let uploadTask = storage.ref(`/Projects/${file.name}`).put(file);
+      
+    let sections = [];
+    let bannerImagesURL = [];
+    // console.log(formValues);
+    let bannerImages = [...images];
+    bannerImages?.map((img)=>
+    {
+      
+      let uploadTask = storage.ref(`/Projects/${title}/${img.name}`).put(img);
       uploadTask.on("state_changed", console.log, console.error, () => {
         storage
-          .ref("Projects")
-          .child(file.name)
+          .ref(`Projects/${title}`)
+          .child(img.name)
           .getDownloadURL()
           .then((url) => {
-            setFile(null);
-            setURL(url);
-            const uploadTask = storage.ref(`/Projects/${file.name}`).put(file);
-            db.collection("Projects").doc().set({
-              Title: title,
-              Description: description,
-              Authors: author,
-              PublicationURL: url,
-              Category: category,
-              GithubLink: github,
-              Year: year,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            });
-            setTitle("");
-            setDescription("");
-            setAuthor("");
-            setYear("");
-            setFile(null);
-			setGithub("");
-			setURL("");
+            bannerImagesURL.push(url)
+            // setimgUrl(newimgURL);
+            const uploadTask = storage.ref(`/Projects/${title}/${img.name}`).put(img);
+            
           });
       });
+    })
+    formValues?.map((sub)=>
+    {
+      let imgURL = [];
+      let img = [...sub.images];
+      // console.log(img);
+      
+      img.map((one)=>
+      {
+        let uploadTask = storage.ref(`/Projects/${title}/${one.name}`).put(one);
+      uploadTask.on("state_changed", console.log, console.error, () => {
+        storage
+          .ref(`Projects/${title}`)
+          .child(one.name)
+          .getDownloadURL()
+          .then((url) => {
+            imgURL.push(url)
+            // setimgUrl(newimgURL);
+            const uploadTask = storage.ref(`/Projects/${title}/${one.name}`).put(one);
+            
+          });
+      });
+        // console.log(one);
+      }
+      )
+
+      sections = [...sections,{subheading: sub.subheading, description: sub.subheadingdetails, images: imgURL}];
+      // imgURL = 
+      // console.log(imgUrl,"OYEPYE");
+    }
+    )
+    console.log(bannerImagesURL,sections,"oye2");
+      // let uploadTask = storage.ref(`/Projects/${file.name}`).put(file);
+      // uploadTask.on("state_changed", console.log, console.error, () => {
+      //   storage
+      //     .ref("Projects")
+      //     .child(file.name)
+      //     .getDownloadURL()
+      //     .then((url) => {
+      //       setFile(null);
+      //       setURL(url);
+      //       const uploadTask = storage.ref(`/Projects/${file.name}`).put(file);
+      const payload = {
+        title: title,
+        description: description,
+        authors: author,
+        publicationUrl: url,
+        category: category,
+        githubUrl: github,
+        year: year,
+        images: bannerImagesURL,
+        sections: sections,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      }
+      console.log(payload);
+      // axios.post(`http://localhost:5000/project/add/`, payload).then(res=>{window.alert("New Project Added")})
+      //       // db.collection("Projects").doc().set({
+      //       //   Title: title,
+      //       //   Description: description,
+      //       //   Authors: author,
+      //       //   PublicationURL: url,
+      //       //   Category: category,
+      //       //   GithubLink: github,
+      //       //   Year: year,
+      //       //   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      //       // });
+      //       setTitle("");
+      //       setDescription("");
+      //       setAuthor("");
+      //       setYear("");
+      //       setFile(null);
+			// setGithub("");
+			// setURL("");
+      //     });
+      // });
          
       
-		
-	}
 	}
   };
 let handleChangeinForm = (i, e) => {
+    // console.log(formValues);
     let newFormValues = [...formValues];
     newFormValues[i][e.target.name] = e.target.value;
     // newFormValues[i][images] = images2
     setFormValues(newFormValues);
   }
-let handleChangeinImages = (i, e) => {
-  let newFormValues = [...formValues];
-    newFormValues[i][images] = e;
+let handleSubImageChange = (i, e) => {
+    // console.log(e.target.files);
+    let newFormValues = [...formValues];
+    newFormValues[i][e.target.name] = e.target.files;
+    // newFormValues[i][images] = images2
     setFormValues(newFormValues);
+  }
+let handleImageChange = (e) => {
+  setImages(e.target.files);
+  
 }
 let addFormFields = () => {
-    setFormValues([...formValues, { name: "", email: "" , images: {}}])
+  // console.log(sections);
+    setFormValues([...formValues, { subheading: "", subheadingdetails: "" , images: {}}])
   }
 
 let removeFormFields = (i) => {
@@ -132,9 +196,9 @@ let removeFormFields = (i) => {
   //UPLOADING FILE STARTED
   const [file, setFile] = useState(null);
   const [url, setURL] = useState("");
-  function handleImageChange(e) {
-    setFile(e.target.files[0]);
-  }
+  // function handleImageChange(e) {
+  //   setFile(e.target.files[0]);
+  // }
   const handleUpload = async (e) => {
     const uploadTask = await storage.ref(`/Projects/${file.name}`).put(file);
     uploadTask.on("state_changed", console.log, console.error, () => {
@@ -270,35 +334,41 @@ let removeFormFields = (i) => {
             </FormControl>
           </div>
 
-          <div>
+          {/* <div>
             <input
               type="file"
               placeholder="Image"
               onChange={handleImageChange}
             ></input>
             <span className="border"></span>
-          </div>
+          </div> */}
           
           
           <label>Main Images</label>
-          <MultiImageInput allowCrop={false}
+          <div>
+          <input type="file" name="images" id="file" multiple onChange={e => handleImageChange(e)}/>
+          </div>
+          {/* <MultiImageInput allowCrop={false}
             images={images}
             setImages={setImages}
-          />
+          /> */}
           
-
+         
 
           {formValues.map((element, index) => (
             // <div className="subheading">
+            
             <div className="form-inline" key={index}>
-              <input type="text" name="subheading" placeholder="Subheading" value={element.name || ""} onChange={e => handleChangeinForm(index, e)} />
-              <input type="text" name="subheadingdetails" placeholder="Details" value={element.email || ""} onChange={e => handleChangeinForm(index, e)} />
+              <input type="text" name="subheading" placeholder="Subheading" value={element.subheading || ""} onChange={e => handleChangeinForm(index, e)} />
+              <input type="text" name="subheadingdetails" placeholder="Details" value={element.subheadingdetails || ""} onChange={e => handleChangeinForm(index, e)} />
               <label>Sub Images</label>
-              <MultiImageInput allowCrop={false}
+              <input type="file" name="images" id="file" multiple onChange={e => handleSubImageChange(index, e)}/>
+              {/* <MultiImageInput allowCrop={false}
                 images={element.images}
                 setImages={setImages2}
 
-              />
+              /> */}
+              
               {
                 index ? 
                   <button type="button"  className="button remove" onClick={() => removeFormFields(index)}>Remove</button> 
@@ -312,26 +382,26 @@ let removeFormFields = (i) => {
               <button className="button add" type="button" onClick={() => addFormFields()}>Add subheading</button>
           </div>
           <div className="button-section">
-            <button className="button project" onClick={addTeamMember}>Add</button>
+            <button className="button project" type="button" onClick={addTeamMember}>Add</button>
           </div>
-
+          
         </form>
       </div>
       {allpublications?.map(({ id, publication }) => (
         <div className="Publication">
           <div className="Document">
-            <a target="_blank" href={publication.PublicationURL}>
+            <a target="_blank" href={publication.publicationUrl}>
               <Description />
             </a>
           </div>
           <div className="data" s>
             <div className="title">
-              {publication.Title}, {publication.Authors}
+              {publication.title}
             </div>
             <div className="delete">
               <button
                 onClick={() => {
-                  if (window.confirm(`Delete ${publication.Title}?`)) {
+                  if (window.confirm(`Delete ${publication.title}?`)) {
                     deleteMember(id);
                   }
                 }}

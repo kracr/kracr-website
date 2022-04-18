@@ -11,6 +11,7 @@ import LoginCMS from "./Components/CMS/LoginCMS/LoginCMS";
 import Project from "./Components/Projects/Project";
 import ProjectDetails from "./Components/Projects/ProjectDetails";
 import News from "./Components/News/News";
+import JoinUs from "./Components/JoinUs/JoinUs";
 import { useSelector } from "react-redux";
 import Chatbot from "./Components/Chatbot/chatbot";
 
@@ -52,6 +53,9 @@ function App() {
               <Route path="/projects/:id" exact component={ProjectDetails} />
               <Route path="/news" exact>
                 <News />
+              </Route>
+              <Route path="/joinus" exact>
+                <JoinUs />
               </Route>
             </Switch>
             <Footer />
