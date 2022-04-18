@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import ImageGallery from 'react-image-gallery';
+import { IconButton } from "@material-ui/core";
+import GitHubIcon from '@material-ui/icons/GitHub';
+import { Description } from "@material-ui/icons";
 import "../../Page.scss";
 // import * as op from '../../Assets';
 import {
@@ -37,7 +40,7 @@ function ProjectDetails() {
 
   }, []);
   return (
-    <div className="project-page">
+    <div className="project-details">
       <div className="page-wrapper">
         <div className="title">
           {projectData.title}
@@ -45,44 +48,65 @@ function ProjectDetails() {
         <div>
           <ImageGallery items={images} />
         </div>
-        <div className="description">{projectData.description}</div>
+        <div className="mainDescription">{projectData.description}</div>
         <div>
           {subHeadings.map((i) => (
-            <div className='Container'>
-              <div className="subtitle">{i.subHeading}</div>
-              <div className="description">{i.description}</div>
-              <ImageGallery items={i.images} />
+            <div >
+              <div className="subheading">{i.subHeading}</div>
+              <div className="Container">
+              <div className='left'><div className="description">{i.description}</div></div>
+              {i.images.length?<ImageGallery className="image-gallery1" items={i.images} />:''}
+              </div>
             </div>
           )
           )}
         </div>
+        <Grid container spacing={3}>
+          <Grid item>
         <Card style={{
-          width: 400,
+          width: 300,
+          marginBottom:10,
           backgroundColor: "grey",
         }}
         >
           <CardContent>
             <Typography
-              style={{ fontSize: 14 }}
+              style={{ fontSize: 20 }}
               color="textSecondary"
               gutterBottom
             >
-              Authors
+              Team Members
             </Typography>
-            {projectData.authors &&
-              // projectData.authors.map((x)=>
-              // {
-              //   console.log(x);
-              //   return(
-              <Typography>{projectData.authors}</Typography>
-              // }
-              // )
-
-            }
+            <Typography>{projectData.authors}</Typography>
+            
+           
           </CardContent>
         </Card>
-
-
+        </Grid>
+        <Grid item>
+        <Card style={{
+          width: 300,
+          backgroundColor: "grey",
+        }}
+        >
+          <CardContent> 
+          <Typography
+              style={{ fontSize: 20 }}
+              color="textSecondary"
+              gutterBottom
+            >
+              Important Links</Typography>{projectData?.githubUrl == "" ?    <> < />  : (<IconButton 
+                onClick={() => window.open(`${projectData.githubUrl}`)}>
+                <GitHubIcon />
+                </IconButton>)}
+				
+				  {projectData?.publicationUrl == "" ?    <> < />  : (<IconButton 
+                onClick={() => window.open(`${projectData.ProjepublicationUrlctURL}`)}>
+                <Description />
+                </IconButton>)}</CardContent>
+          </Card>
+          </Grid>
+            </Grid>
 
       </div>
     </div>
