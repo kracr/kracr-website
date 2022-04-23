@@ -28,8 +28,8 @@ function Team() {
     // db.collection("TeamMembers")
     //   .orderBy("Name", "asc")
     //   .onSnapshot((snapshot) => {
-      axios.get('http://localhost:5000/team').then((snapshot)=>{
-        // axios.post(`http://localhost:5000/team/import`,snapshot.docs.map((doc) => ({ id: doc.id, team: doc.data() })));
+      axios.get('http://192.168.1.166:5000/team').then((snapshot)=>{
+        // axios.post(`http://192.168.1.166:5000/team/import`,snapshot.docs.map((doc) => ({ id: doc.id, team: doc.data() })));
         setAllMembers(
           snapshot.data.map((doc) => ({ id: doc.id, member: doc }))
         );

@@ -20,12 +20,12 @@ function News() {
       //     let check = snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }));
       //     console.log("checkinggg",check);
       //     let check2 = check.map((doc) => ({ id: doc.id, news: {Date:doc.news.Date.toDate(),Title:doc.news.Title}}));
-      //     // axios.post(`http://localhost:5000/news/import`,check2);
+      //     // axios.post(`http://192.168.1.166:5000/news/import`,check2);
       //     setAllNews(
       //         snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }))
       //     );
       //   });
-      axios.get('http://localhost:5000/news').then((news)=>{
+      axios.get('http://192.168.1.166:5000/news').then((news)=>{
         setAllNews(
           news.data.map((one)=>
             ({id:one._id,news:one})
