@@ -16,7 +16,7 @@ function NewsCMS() {
 ];
 
   useEffect(() => {
-    axios.get('http://localhost:5000/news').then((news)=>{
+    axios.get(`${process.env.REACT_APP_BASE_URL}/news`).then((news)=>{
       setAllNews(
         news.data.map((one)=>
         {
@@ -62,7 +62,7 @@ function NewsCMS() {
       Title: title, 
       Date: date
     }
-    axios.post(`http://localhost:5000/news/add/`, payload).then(res=>{window.alert("News Added")})
+    axios.post(`${process.env.REACT_APP_BASE_URL}/news/add/`, payload).then(res=>{window.alert("News Added")})
     // db.collection("News").doc().set({
     //   Title: title,
     //   Date: firebase.firestore.Timestamp.fromDate(new Date(date)),

@@ -24,10 +24,10 @@ function Project() {
     // db.collection("Projects")
     //   .orderBy("Title", "asc")
     //   .onSnapshot((snapshot) => { 
-    //     axios.post(`http://localhost:5000/project/import`,snapshot.docs.map((doc) => ({ id: doc.id, project: doc.data() })));
+    //     axios.post(`${process.env.REACT_APP_BASE_URL}/project/import`,snapshot.docs.map((doc) => ({ id: doc.id, project: doc.data() })));
     //   }
     //   );
-    axios.get(`http://localhost:5000/project`).then(res=> {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/project`).then(res=> {
       console.log(res);
         setAllProjects(
           res.data.map((doc) => ({ id: doc._id, project: doc }))

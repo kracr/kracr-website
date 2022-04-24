@@ -22,7 +22,7 @@ function ProjectCMS() {
     //     );
     //   });
     console.log(formValues);
-    axios.get('http://localhost:5000/project').then((projects)=>{
+    axios.get(`${process.env.REACT_APP_BASE_URL}/project`).then((projects)=>{
       setAllPublications(
         projects.data.map((one)=>
         {
@@ -130,7 +130,7 @@ function ProjectCMS() {
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       }
       console.log(payload);
-      // axios.post(`http://localhost:5000/project/add/`, payload).then(res=>{window.alert("New Project Added")})
+      // axios.post(`${process.env.REACT_APP_BASE_URL}/project/add/`, payload).then(res=>{window.alert("New Project Added")})
       //       // db.collection("Projects").doc().set({
       //       //   Title: title,
       //       //   Description: description,

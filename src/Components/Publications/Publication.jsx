@@ -15,12 +15,12 @@ function Publication() {
     // db.collection("Publications")
     //   .orderBy("Year", "desc")
     //   .onSnapshot((snapshot) => {
-    //     // axios.post(`http://localhost:5000/publications/import`,snapshot.docs.map((doc) => ({ id: doc.id, publications: doc.data() })));
+    //     // axios.post(`${process.env.REACT_APP_BASE_URL}/publications/import`,snapshot.docs.map((doc) => ({ id: doc.id, publications: doc.data() })));
     //     setAllPublications(
     //       snapshot.docs.map((doc) => ({ id: doc.id, publication: doc.data() }))
     //     );
     //   });
-    axios.get('http://localhost:5000/publications').then(res=>{
+    axios.get(`${process.env.REACT_APP_BASE_URL}/publications`).then(res=>{
       setAllPublications(
         res.data.map((doc)=>({id:doc._id,publication:doc}))
       )
