@@ -84,7 +84,7 @@ function ProjectCMS() {
       
       img.map((one)=>
       {
-        let uploadTask = storage.ref(`/Projects/${title}/${one.name}`).put(one);
+        let uploadTask =  storage.ref(`/Projects/${title}/${one.name}`).put(one);
       uploadTask.on("state_changed", console.log, console.error, () => {
         storage
           .ref(`Projects/${title}`)

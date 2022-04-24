@@ -28,6 +28,11 @@ function Project() {
     //   }
     //   );
     axios.get(`${process.env.REACT_APP_BASE_URL}/project`).then(res=> {
+
+    //     axios.post(`http://192.168.1.166:5000/project/import`,snapshot.docs.map((doc) => ({ id: doc.id, project: doc.data() })));
+    //   }
+    //   );
+
       console.log(res);
         setAllProjects(
           res.data.map((doc) => ({ id: doc._id, project: doc }))

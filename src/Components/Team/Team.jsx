@@ -28,8 +28,10 @@ function Team() {
     // db.collection("TeamMembers")
     //   .orderBy("Name", "asc")
     //   .onSnapshot((snapshot) => {
+
       axios.get(`${process.env.REACT_APP_BASE_URL}/team`).then((snapshot)=>{
         // axios.post(`${process.env.REACT_APP_BASE_URL}/team/import`,snapshot.docs.map((doc) => ({ id: doc.id, team: doc.data() })));
+
         setAllMembers(
           snapshot.data.map((doc) => ({ id: doc.id, member: doc }))
         );

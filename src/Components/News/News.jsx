@@ -25,7 +25,6 @@ function News() {
       //         snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }))
       //     );
       //   });
-      console.log(process.env);
       axios.get(`${process.env.REACT_APP_BASE_URL}/news`).then((news)=>{
         setAllNews(
           news.data.map((one)=>

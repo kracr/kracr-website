@@ -1,6 +1,6 @@
 import db from "../../firebase";
 import React, { useState, useEffect } from "react";
-import { ExpandMore, ExpandLess, NavigateBefore, NavigateNext, DoubleArrow, Flag } from "@material-ui/icons";
+import { ExpandMore, ExpandLess, NavigateBefore, NavigateNext, DoubleArrow, Flag, CenterFocusWeak } from "@material-ui/icons";
 import { Card, CardActions, CardContent, Typography, Grid, Paper, TextField, Button, TableCell, TableRow, TableBody, TableHead,Modal, Box, Table, TablePagination } from '@material-ui/core';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { IconButton } from "@material-ui/core";
@@ -102,9 +102,10 @@ function JoinUs() {
         {allopenings?.map(({ id, opening }) => (
         
         <Card style={{
-        maxWidth: "98%",
+        maxWidth: "95%",
         boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
         backgroundColor: "#fafafa",
+        marginBottom: "10px"
       }}>
       <CardContent>
         <Typography className="title" color="blue" variant="h5" >
@@ -117,13 +118,17 @@ function JoinUs() {
           Due Date: {new Date(opening.dueDate).toDateString()}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions style={{
+          display: "flex",
+          justifyContent: "flex-end"
+      }}>
       <Button style={{
             padding: "10px 20px",
             backgroundColor: "dodgerblue",
             // background-color: dodgerblue,
             border: "1px solid #ddd",
             color: "white",
+            alignContent: "left",
             // cursor: pointer
         }} size="small" onClick={()=> window.open(opening.jdPdf, "_blank")}>View JD</Button>
         <Button style={{
