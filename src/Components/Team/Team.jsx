@@ -117,7 +117,7 @@ function Team() {
                 ?.filter(({ id, member }) => member.Position === "Faculty")
                 .map(({ id, member }) => (
                   <div className="container">
-                    <img src={member.ImageURL} alt={member.Name} />
+                    <img src={process.env.REACT_APP_BASE_URL+"/image/"+member.ImageURL} alt={member.Name} />
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
@@ -212,7 +212,7 @@ function Team() {
                 ?.filter(({ id, member }) => member.Position === "PhD")
                 .map(({ id, member }) => (
                   <div className="container">
-                    <img src={member.ImageURL} alt={member.Name} />
+                    <img src={process.env.REACT_APP_BASE_URL+"/image/"+member.ImageURL} alt={member.Name} />
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
@@ -308,7 +308,7 @@ function Team() {
                 ?.filter(({ id, member }) => member.Position === "Masters")
                 .map(({ id, member }) => (
                   <div className="container">
-                    <img src={member.ImageURL} alt={member.Name} />
+                    <img src={process.env.REACT_APP_BASE_URL+"/image/"+member.ImageURL} alt={member.Name} />
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
@@ -405,7 +405,7 @@ function Team() {
                 ?.filter(({ id, member }) => member.Position === "BTech")
                 .map(({ id, member }) => (
                   <div className="container">
-                    <img src={member.ImageURL} alt={member.Name} />
+                    <img src={process.env.REACT_APP_BASE_URL+"/image/"+member.ImageURL} alt={member.Name} />
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
@@ -499,7 +499,7 @@ function Team() {
                 )
                 .map(({ id, member }) => (
                   <div className="container">
-                    <img src={member.ImageURL} alt={member.Name} />
+                    <img src={process.env.REACT_APP_BASE_URL+"/image/"+member.ImageURL} alt={member.Name} />
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
@@ -642,7 +642,7 @@ function Team() {
                 ?.filter(({ id, member }) => member.Position === "Alumni")
                 .map(({ id, member }) => (
                   <div className="container">
-                    <img src={member.ImageURL} alt={member.Name} />
+                    <img src={process.env.REACT_APP_BASE_URL+"/image/"+member.ImageURL} alt={member.Name} />
                     <div className="middle">
                       <div className="wrapper">
                         <div className="Title">
