@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./JoinUsCMS.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import { storage } from "../../../firebase";
-import db from "../../../firebase";
-import firebase from "firebase";
 import { DeleteForever, Description } from "@material-ui/icons";
 import axios from "axios";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
@@ -105,7 +103,7 @@ function JoinUsCMS() {
   //Deleting Member
 
   const deleteMember = (id) => {
-    db.collection("Publications").doc(id).delete();
+    // db.collection("Publications").doc(id).delete();
   };
 
   //UPLOADING FILE STARTED

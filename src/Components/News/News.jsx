@@ -1,4 +1,3 @@
-import db from "../../firebase";
 import React, { useState, useEffect } from "react";
 import { ExpandMore, ExpandLess, NavigateBefore, NavigateNext, DoubleArrow, Flag } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";

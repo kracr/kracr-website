@@ -1,4 +1,3 @@
-import db from "../../firebase";
 import React, { useState, useEffect } from "react";
 import { ExpandMore, ExpandLess, NavigateBefore, NavigateNext, DoubleArrow, Flag, CenterFocusWeak } from "@material-ui/icons";
 import { Card, CardActions, CardContent, Typography, Grid, Paper, TextField, Button, TableCell, TableRow, TableBody, TableHead,Modal, Box, Table, TablePagination } from '@material-ui/core';

@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./TeamCMSMember.scss";
 import { DeleteForever } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
-import db from "../../../firebase";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
-import firebase from "firebase";
 import { makeStyles } from "@material-ui/core/styles";
 
 function TeamCMSMember({ member, id }) {
   const deleteMember = () => {
-    db.collection("TeamMembers").doc(id).delete();
+    // db.collection("TeamMembers").doc(id).delete();
   };
 
   const [category, setcategory] = useState("B.Tech");
@@ -35,9 +33,9 @@ function TeamCMSMember({ member, id }) {
 
   const handleChange = (event) => {
     setcategory(event.target.value);
-    db.collection("TeamMembers")
-      .doc(id)
-      .update({ Position: event.target.value });
+    // db.collection("TeamMembers")
+    //   .doc(id)
+    //   .update({ Position: event.target.value });
   };
 
   const handleClose = () => {

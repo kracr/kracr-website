@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../../Page.scss";
-import db from "../../firebase";
 import axios from 'axios';
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./ProjectCMS.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import { storage } from "../../../firebase";
-import db from "../../../firebase";
-import firebase from "firebase";
 import { DeleteForever, Description } from "@material-ui/icons";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import MultiImageInput from 'react-multiple-image-input';
@@ -127,7 +125,7 @@ function ProjectCMS() {
         year: year,
         images: bannerImagesURL,
         sections: sections,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        timestamp: 0,
       }
       console.log(payload);
       axios.post(`http://192.168.1.166:5000/project/add/`, payload).then(res=>{window.alert("New Project Added")})
@@ -190,7 +188,7 @@ let removeFormFields = (i) => {
     width: '100'
   };
   const deleteMember = (id) => {
-    db.collection("Projects").doc(id).delete();
+    // db.collection("Projects").doc(id).delete();
   };
 
   //UPLOADING FILE STARTED

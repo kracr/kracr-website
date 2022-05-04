@@ -11,7 +11,6 @@ import {
 } from "@material-ui/icons";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import db from "../../firebase";
 import axios from 'axios';
 
 function Team() {
@@ -52,6 +51,7 @@ function Team() {
             setViewCollab(true);
           }
         });
+      console.log(allMembers);
       });
   }, []);
 

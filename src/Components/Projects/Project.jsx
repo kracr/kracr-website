@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../../Page.scss";
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import db from "../../firebase";
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import GitHubIcon from '@material-ui/icons/GitHub';

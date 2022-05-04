@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./teamCMS.scss";
 import { makeStyles } from "@material-ui/core/styles";
-import { storage } from "../../../firebase";
+import storage from "../../../firebase";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
-import db from "../../../firebase";
-import firebase from "firebase";
 import { DeleteForever } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import TeamCMSMember from "./TeamCMSMember";
@@ -151,7 +149,7 @@ function TeamCMS() {
   //Deleting Member
 
   const deleteMember = (id) => {
-    db.collection("TeamMembers").doc(id).delete();
+    // db.collection("TeamMembers").doc(id).delete();
   };
 
   //UPLOADING FILE STARTED

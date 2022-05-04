@@ -10,6 +10,7 @@ import "react-slideshow-image/dist/styles.css";
 import { Link } from "react-router-dom";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import { NavigateBefore, NavigateNext } from "@material-ui/icons";
+import axios from "axios";
 
 function Home() {
   //Image SLider CODE BEGINS
@@ -30,25 +31,53 @@ function Home() {
 ];
 
   useEffect(() => {
-    db.collection("News")
-      .orderBy("Date", "desc")
-      .limit(8)
-      .onSnapshot((snapshot) => {
-        setAllNews(
-            snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }))
-        );
-      });
+    // db.collection("News")
+    //   .orderBy("Date", "desc")
+    //   .limit(8)
+    //   .onSnapshot((snapshot) => {
+    //     setAllNews(
+    //         snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }))
+    //     );
+    //   });
+    axios.get('http://192.168.1.166:5000/news').then((news)=>{
+      setAllNews(
+        news.data.map((one)=>
+          ({id:one._id,news:one})
+        )
+      );
+    })
     }, []);
 
   //Getting the Projects
   useEffect(() => {
-    db.collection("Projects")
-      .orderBy("timestamp", "desc")
-      .limit(4)
-      .onSnapshot((snapshot) => {
+    // db.collection("Projects")
+    //   .orderBy("timestamp", "desc")
+    //   .limit(4)
+    //   .onSnapshot((snapshot) => {
+    //     setAllProjects(
+    //       snapshot.docs.map((doc) => ({ id: doc.id, project: doc.data() }))
+    //     );
+    //   });
+    axios.get(`http://192.168.1.166:5000/project`).then(res=> {
+      console.log(res);
         setAllProjects(
-          snapshot.docs.map((doc) => ({ id: doc.id, project: doc.data() }))
+          res.data.map((doc) => ({ id: doc._id, project: doc }))
         );
+        // res.data.map((doc) => {
+        //   if (doc.category == "Ontology Modelling and Enrichment") {
+        //     setTypeA(true);
+        //   } else if (doc.category == "Description Logic Reasoning") {
+        //     setTypeB(true);
+        //   } else if (doc.category == "Knowledge Graphs") {
+        //     setTypeC(true);
+        //   } else if (doc.category == "SPARQL Querying") {
+        //     setTypeD(true);
+        //   } else if (doc.category == "Semantic Web Applications") {
+        //     setTypeE(true);
+        //   } else if (doc.category == "Others") {
+        //     setTypeF(true);
+        //   }
+        // });
       });
   }, []);
   //Ending THe Projects
@@ -362,15 +391,15 @@ function Home() {
             {allProjects?.map(({ id, project }) => (
               <div className="tile">
                 <div className="tile_up">
-                  <div className="title-tile">{project.Title}</div>
-                  <div className="author-tile">{project.Authors}</div>
+                  <div className="title-tile">{project.title}</div>
+                  <div className="author-tile">{project.authors}</div>
                 </div>
                 <div className="tile_down">
-                  <div className="tile_desc">{project.Description}</div>
-                  <div className="category-tile">{project.Category}</div>
+                  <div className="tile_desc">{project.description}</div>
+                  <div className="category-tile">{project.category}</div>
                 </div>
               </div>
-            ))}
+            )).slice(0, 4)}
           </div>
           <div className="more">
             <Link to="/Projects">Show More</Link>
@@ -383,8 +412,8 @@ function Home() {
           <div className="tiles">
             <div className="horizontalScroll">
               {allNews.map(({id, news}) => {
-                var year = new Date(news.Date.seconds * 1000).getFullYear();
-                var month = monthNames[new Date(news.Date.seconds * 1000).getMonth()];
+                var year = new Date(news.Date).getFullYear();
+                var month = monthNames[new Date(news.Date).getMonth()];
                 return(
                 <div itemId={id} className="item">
                   <div className="item-title">{month + " " + year}</div>
