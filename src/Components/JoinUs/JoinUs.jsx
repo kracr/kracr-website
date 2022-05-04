@@ -17,7 +17,7 @@ function JoinUs() {
   ];
   
   useEffect(() => {
-    axios.get('http://192.168.1.166:5000/joinus').then((opening)=>{
+    axios.get(`${process.env.REACT_APP_BASE_URL}/joinus`).then((opening)=>{
         setAllOpenings(
           opening.data.map((one)=>
           {

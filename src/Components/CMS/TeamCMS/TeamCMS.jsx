@@ -13,7 +13,7 @@ function TeamCMS() {
   const [teamMembers, setTeamMembers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://192.168.1.166:5000/team').then((team)=>{
+    axios.get(`${process.env.REACT_APP_BASE_URL}/team`).then((team)=>{
       setTeamMembers(
         team.data.map((one)=> ({ id: one._id, member: one }))
       );
@@ -63,7 +63,7 @@ function TeamCMS() {
               Mail: mail,
               ImageURL: url
       }
-      axios.post(`http://192.168.1.166:5000/team/add/`, payload).then(res=>{window.alert("New Member Added")})
+      axios.post(`${process.env.REACT_APP_BASE_URL}/team/add/`, payload).then(res=>{window.alert("New Member Added")})
 			//  db.collection("TeamMembers").doc().set({
       //         Name: name,
       //         Interests: interest,
@@ -113,7 +113,7 @@ function TeamCMS() {
               Mail: mail,
               ImageURL: url
       }
-      axios.post(`http://192.168.1.166:5000/team/add/`, payload).then(res=>{window.alert("New Member Added")})
+      axios.post(`${process.env.REACT_APP_BASE_URL}/team/add/`, payload).then(res=>{window.alert("New Member Added")})
         //     db.collection("TeamMembers").doc().set({
         //       Name: name,
         //       Interests: interest,

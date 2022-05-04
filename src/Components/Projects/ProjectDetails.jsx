@@ -24,7 +24,7 @@ function ProjectDetails() {
   const [subHeadings, setSubHeading] = useState([]);
   useEffect(() => {
     console.log(id);
-    axios.get(`http://192.168.1.166:5000/project/${id}`).then(res => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/project/${id}`).then(res => {
       setProjectData(res.data);
       setImages(res.data.images.map((i) => {
         return { "original": i, "thumbnail": i };

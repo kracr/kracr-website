@@ -20,7 +20,7 @@ function ProjectCMS() {
     //     );
     //   });
     console.log(formValues);
-    axios.get('http://192.168.1.166:5000/project').then((projects)=>{
+    axios.get(`${process.env.REACT_APP_BASE_URL}/project`).then((projects)=>{
       setAllPublications(
         projects.data.map((one)=>
         {
@@ -128,7 +128,7 @@ function ProjectCMS() {
         timestamp: 0,
       }
       console.log(payload);
-      axios.post(`http://192.168.1.166:5000/project/add/`, payload).then(res=>{window.alert("New Project Added")})
+      // axios.post(`${process.env.REACT_APP_BASE_URL}/project/add/`, payload).then(res=>{window.alert("New Project Added")})
       //       // db.collection("Projects").doc().set({
       //       //   Title: title,
       //       //   Description: description,
