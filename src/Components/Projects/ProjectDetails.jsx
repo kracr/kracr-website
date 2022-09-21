@@ -27,12 +27,12 @@ function ProjectDetails() {
     axios.get(`${process.env.REACT_APP_BASE_URL}/project/${id}`).then(res => {
       setProjectData(res.data);
       setImages(res.data.images.map((i) => {
-        return { "original": i, "thumbnail": i };
+        return { "original": process.env.REACT_APP_BASE_URL+"/image/"+i, "thumbnail": process.env.REACT_APP_BASE_URL+"/image/"+i };
       }));
       setSubHeading(res.data.sections.map(i => {
         return {
           "subHeading": i.subHeading, "description": i.description, "images": i.images.map((j) => {
-            return { "original": j };
+            return { "original": process.env.REACT_APP_BASE_URL+"/image/"+j };
           })
         }
       }));

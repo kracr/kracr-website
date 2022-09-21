@@ -41,117 +41,97 @@ function ProjectCMS() {
   const [author, setAuthor] = useState("");
   const [year, setYear] = useState("");
   const [github, setGithub] = useState("");
-  const [formValues, setFormValues] = useState([{ subheading: "", subheadingdetails : "", images : []}]);
+  const [formValues, setFormValues] = useState([]);
   // const [sections, setSections] = useState([{subheading:"", description : "", images : []}]);
   const [images, setImages] = useState([]);
   const [imgUrl,setimgUrl] = useState([]);
   const [images2, setImages2] = useState({});
+  
+  const callAPI = async(arr)=>{
 
-  const addTeamMember = async(e) => {
+    let urls = [];
+    const allAPICalls = arr?.map(async (img) => {
+      const formData = new FormData();
+      formData.append("image", img);
+      return await axios.post(`${process.env.REACT_APP_BASE_URL}/image/upload`, formData);
+    });
+
+    const allAPICallsCalled = await Promise.all(allAPICalls);
+
+    allAPICallsCalled?.map((response) => {
+      urls.push(response.data.name);
+    });
+
+    return urls;
+    
+  }
+
+  const uploadAllImages = async () => {
+
+    return new Promise(async(resolve,reject)=>{
+      let bannerImages = [...images];
+      let bannerImagesURL = await callAPI(bannerImages);
+      let sections = await Promise.all(formValues?.map(async(sub) => {
+          let img = [...sub.images];
+          let imgURL = await callAPI(img);
+          return {subHeading: sub.subheading, description: sub.subheadingdetails, images: imgURL}
+        }
+      ));
+      resolve([bannerImagesURL,sections]);
+    });
+  }
+
+  const getPayload = ()=>{
+
+      return new Promise((resolve,reject)=>{
+        uploadAllImages().then(data=>{
+          console.log(data[0],data[1]);
+          resolve({
+            title: title,
+            description: description,
+            authors: author,
+            publicationUrl: url,
+            category: category,
+            githubUrl: github,
+            year: year,
+            images: data[0],
+            sections: data[1],
+            timestamp: 0,
+          });
+        })
+        .catch(err=>{
+          reject(err);
+        });
+      });
+  }
+
+  const addTeamMember = async (e) => {
     e.preventDefault();
     if (title === "" || description === "") {
       window.alert("Please fill Title and Description");
-    } else {
-      
-    let sections = [];
-    let bannerImagesURL = [];
-    // console.log(formValues);
-    let bannerImages = [...images];
-    bannerImages?.map((img)=>
-    {
-      
-      let uploadTask = storage.ref(`/Projects/${title}/${img.name}`).put(img);
-      uploadTask.on("state_changed", console.log, console.error, () => {
-        storage
-          .ref(`Projects/${title}`)
-          .child(img.name)
-          .getDownloadURL()
-          .then((url) => {
-            bannerImagesURL.push(url)
-            // setimgUrl(newimgURL);
-            const uploadTask = storage.ref(`/Projects/${title}/${img.name}`).put(img);
-            
-          });
-      });
-    })
-    formValues?.map((sub)=>
-    {
-      let imgURL = [];
-      let img = [...sub.images];
-      // console.log(img);
-      
-      img.map((one)=>
-      {
-        let uploadTask =  storage.ref(`/Projects/${title}/${one.name}`).put(one);
-      uploadTask.on("state_changed", console.log, console.error, () => {
-        storage
-          .ref(`Projects/${title}`)
-          .child(one.name)
-          .getDownloadURL()
-          .then((url) => {
-            imgURL.push(url)
-            // setimgUrl(newimgURL);
-            const uploadTask = storage.ref(`/Projects/${title}/${one.name}`).put(one);
-            
-          });
-      });
-        // console.log(one);
-      }
-      )
-
-      sections = [...sections,{subheading: sub.subheading, description: sub.subheadingdetails, images: imgURL}];
-      // imgURL = 
-      // console.log(imgUrl,"OYEPYE");
+      return;
     }
-    )
-    console.log(bannerImagesURL,sections,"oye2");
-      // let uploadTask = storage.ref(`/Projects/${file.name}`).put(file);
-      // uploadTask.on("state_changed", console.log, console.error, () => {
-      //   storage
-      //     .ref("Projects")
-      //     .child(file.name)
-      //     .getDownloadURL()
-      //     .then((url) => {
-      //       setFile(null);
-      //       setURL(url);
-      //       const uploadTask = storage.ref(`/Projects/${file.name}`).put(file);
-      const payload = {
-        title: title,
-        description: description,
-        authors: author,
-        publicationUrl: url,
-        category: category,
-        githubUrl: github,
-        year: year,
-        images: bannerImagesURL,
-        sections: sections,
-        timestamp: 0,
-      }
-      console.log(payload);
-      // axios.post(`${process.env.REACT_APP_BASE_URL}/project/add/`, payload).then(res=>{window.alert("New Project Added")})
-      //       // db.collection("Projects").doc().set({
-      //       //   Title: title,
-      //       //   Description: description,
-      //       //   Authors: author,
-      //       //   PublicationURL: url,
-      //       //   Category: category,
-      //       //   GithubLink: github,
-      //       //   Year: year,
-      //       //   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      //       // });
-      //       setTitle("");
-      //       setDescription("");
-      //       setAuthor("");
-      //       setYear("");
-      //       setFile(null);
-			// setGithub("");
-			// setURL("");
-      //     });
-      // });
-         
-      
-	}
+    getPayload().then((payload) => {
+      axios.post(`${process.env.REACT_APP_BASE_URL}/project/add/`, payload).then(res => {
+        window.alert("New Project Added");
+        setTitle("");
+        setDescription("");
+        setAuthor("");
+        setYear("");
+        setFile(null);
+        setGithub("");
+        setURL("");
+        setImages([]);
+        setFormValues([]);
+      }).catch((err)=>{
+        console.log("Error occured while uploading project");
+      })
+    }).catch((err)=>{
+      console.log("error occured while uploading images");
+    });
+  
   };
+
 let handleChangeinForm = (i, e) => {
     // console.log(formValues);
     let newFormValues = [...formValues];
@@ -165,6 +145,7 @@ let handleSubImageChange = (i, e) => {
     newFormValues[i][e.target.name] = e.target.files;
     // newFormValues[i][images] = images2
     setFormValues(newFormValues);
+    console.log(formValues)
   }
 let handleImageChange = (e) => {
   setImages(e.target.files);
@@ -367,11 +348,9 @@ let removeFormFields = (i) => {
 
               /> */}
               
-              {
-                index ? 
+             
                   <button type="button"  className="button remove" onClick={() => removeFormFields(index)}>Remove</button> 
-                : null
-              }
+                
             </div>
             // </div>
           ))}
