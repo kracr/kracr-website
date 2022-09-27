@@ -22,10 +22,11 @@ const firebaseApp = firebase.initializeApp({
   measurementId: REACT_APP_measurementId,
 });
 
-// const db = firebaseApp.firestore();
+const db = firebaseApp.firestore();
 const auth = firebase.auth();
 const storage = firebase.storage();
 var provider = new firebase.auth.GoogleAuthProvider();
 
+
 export { auth, provider, storage };
-export default auth;
+export default db;

@@ -3,6 +3,7 @@ import { ExpandMore, ExpandLess, NavigateBefore, NavigateNext, DoubleArrow, Flag
 import { IconButton } from "@material-ui/core";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import axios from 'axios';
+import db from "../../firebase";
 function News() {
     const [allNews, setAllNews] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -19,7 +20,7 @@ function News() {
       //     let check = snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }));
       //     console.log("checkinggg",check);
       //     let check2 = check.map((doc) => ({ id: doc.id, news: {Date:doc.news.Date.toDate(),Title:doc.news.Title}}));
-      //     // axios.post(`${process.env.REACT_APP_BASE_URL}/news/import`,check2);
+      //     axios.post(`${process.env.REACT_APP_BASE_URL}/news/import`,check2);
       //     setAllNews(
       //         snapshot.docs.map((doc) => ({ id: doc.id, news: doc.data() }))
       //     );

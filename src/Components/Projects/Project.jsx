@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import GitHubIcon from '@material-ui/icons/GitHub';
+import db from "../../firebase";
+import firebase from "firebase";
+// import { doc, onSnapshot, collection, query, } from "firebase/firestore";
 
 function Project() {
   const [allProjects, setAllProjects] = useState([]);

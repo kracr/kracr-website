@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Description } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import db from "../../firebase";
 
 function Publication() {
   const [allPublications, setAllPublications] = useState([]);
@@ -15,7 +16,7 @@ function Publication() {
     //   .orderBy("Year", "desc")
     //   .onSnapshot((snapshot) => {
 
-    //     // axios.post(`${process.env.REACT_APP_BASE_URL}/publications/import`,snapshot.docs.map((doc) => ({ id: doc.id, publications: doc.data() })));
+    //     axios.post(`${process.env.REACT_APP_BASE_URL}/publications/import`,snapshot.docs.map((doc) => ({ id: doc.id, publications: doc.data() })));
 
     //     setAllPublications(
     //       snapshot.docs.map((doc) => ({ id: doc.id, publication: doc.data() }))

@@ -12,6 +12,7 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import axios from 'axios';
+import db from "../../firebase";
 
 function Team() {
   const [viewCollab, setViewCollab] = useState(false);
