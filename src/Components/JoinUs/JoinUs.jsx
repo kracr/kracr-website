@@ -98,7 +98,7 @@ function JoinUs() {
     return (
         <div className="page">
             <div className="heading">Job Opening</div>
-        {allopenings?.map(({ id, opening }) => (
+        {allopenings.length?allopenings.map(({ id, opening }) => (
         
         <Card style={{
         maxWidth: "95%",
@@ -141,7 +141,10 @@ function JoinUs() {
 
       </CardActions>
     </Card>
-        ))}
+        )):
+        <div className="collapsableCategory">
+        <div className="title">No Job Openings Right Now!!</div>
+        </div>}
         </div>
       
 )

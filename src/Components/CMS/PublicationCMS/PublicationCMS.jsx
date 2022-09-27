@@ -2,23 +2,34 @@ import React, { useState, useEffect } from "react";
 import "./PublicationCMS.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import { storage } from "../../../firebase";
-import db from "../../../firebase";
-import firebase from "firebase";
 import { DeleteForever, Description } from "@material-ui/icons";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import axios from 'axios';
 
 function PublicationCMS() {
   //Getting Team Members
   const [allpublications, setAllPublications] = useState([]);
 
   useEffect(() => {
-    db.collection("Publications")
-      .orderBy("Year", "desc")
-      .onSnapshot((snapshot) => {
-        setAllPublications(
-          snapshot.docs.map((doc) => ({ id: doc.id, publication: doc.data() }))
-        );
-      });
+    // db.collection("Publications")
+    //   .orderBy("Year", "desc")
+    //   .onSnapshot((snapshot) => {
+    //     setAllPublications(
+    //       snapshot.docs.map((doc) => ({ id: doc.id, publication: doc.data() }))
+    //     );
+    //   });
+    
+    axios.get(`${process.env.REACT_APP_BASE_URL}/publications`).then((publications)=>{
+      setAllPublications(
+        publications.data.map((one)=>
+        {
+            return ({ id: one._id, publication: one })
+        }
+          
+        )
+      );
+    })
+
   }, []);
 
   //Adding Team Members
@@ -37,18 +48,28 @@ function PublicationCMS() {
 	    file === null
 		)
 		{	
+      const payload = {
+        Title: title,
+        Description: description,
+        Authors: author,
+        PublicationURL: url,
+        Category: category,
+        Year: year,
+        timestamp: Date.now(),
+  }
+  axios.post(`${process.env.REACT_APP_BASE_URL}/publications/add/`, payload).then(res=>{window.alert("New Publication Added")})
 		
 			
  
-            db.collection("Publications").doc().set({
-              Title: title,
-              Description: description,
-              Authors: author,
-              PublicationURL: url,
-              Category: category,
-              Year: year,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            });
+            // db.collection("Publications").doc().set({
+            //   Title: title,
+            //   Description: description,
+            //   Authors: author,
+            //   PublicationURL: url,
+            //   Category: category,
+            //   Year: year,
+            //   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            // });
             setTitle("");
             setDescription("");
             setAuthor("");
@@ -73,15 +94,25 @@ function PublicationCMS() {
             const uploadTask = storage
               .ref(`/Publications/${file.name}`)
               .put(file);
-            db.collection("Publications").doc().set({
+              const payload = {
               Title: title,
               Description: description,
               Authors: author,
               PublicationURL: url,
               Category: category,
               Year: year,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            });
+              timestamp: Date.now(),
+        }
+        axios.post(`${process.env.REACT_APP_BASE_URL}/publications/add/`, payload).then(res=>{window.alert("New Publication Added")})
+            // db.collection("Publications").doc().set({
+            //   Title: title,
+            //   Description: description,
+            //   Authors: author,
+            //   PublicationURL: url,
+            //   Category: category,
+            //   Year: year,
+            //   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            // });
             setTitle("");
             setDescription("");
             setAuthor("");
@@ -100,7 +131,7 @@ function PublicationCMS() {
   //Deleting Member
 
   const deleteMember = (id) => {
-    db.collection("Publications").doc(id).delete();
+    // db.collection("Publications").doc(id).delete();
   };
 
   //UPLOADING FILE STARTED
@@ -205,7 +236,7 @@ function PublicationCMS() {
             ></input>
             <span className="border"></span>
           </div>
-          <div>
+          {/* <div>
             <FormControl className={classes.formControl}>
               <InputLabel id="demo-controlled-open-select-label">
                 category
@@ -224,7 +255,7 @@ function PublicationCMS() {
                 <MenuItem value={"TypeC"}>TypeC</MenuItem>
               </Select>
             </FormControl>
-          </div>
+          </div> */}
           <div>
             <input
               type="file"

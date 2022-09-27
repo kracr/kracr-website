@@ -31,7 +31,7 @@ function Project() {
     //   );
     axios.get(`${process.env.REACT_APP_BASE_URL}/project`).then(res=> {
 
-    //     axios.post(`http://192.168.1.166:5000/project/import`,snapshot.docs.map((doc) => ({ id: doc.id, project: doc.data() })));
+    //     axios.post(`${process.env.REACT_APP_BASE_URL}/project/import`,snapshot.docs.map((doc) => ({ id: doc.id, project: doc.data() })));
     //   }
     //   );
 
@@ -141,8 +141,14 @@ function Project() {
               <div className="Container">
                 <div className="left">
                   <div className="title">{project.title}</div>
-                  <div className="author">{project.authors}</div>
+                  <div className="subtitle">{project.authors}</div>
                   <div className="description">{project.description}</div>
+                  <div>
+                  <Link to={`Projects/${project._id}`} style={{ textDecoration: "none" }}>
+                  <a className="more">View more</a>
+                  </Link>
+                  </div>
+
 				   {project?.githubUrl == "" ?    <> < />  : (<IconButton
                 onClick={() => window.open(`${project.githubUrl}`)}>
                 <GitHubIcon />
@@ -169,8 +175,14 @@ function Project() {
               <div className="Container">
                 <div className="left">
                   <div className="title">{project.title}</div>
-                  <div className="author">{project.authors}</div>
+                  <div className="subtitle">{project.authors}</div>
                   <div className="description">{project.description}</div>
+                  <div>
+                  <Link to={`Projects/${project._id}`} style={{ textDecoration: "none" }}>
+                  <a className="more">View more</a>
+                  </Link>
+                  </div>
+
 				   {project?.githubUrl == "" ?    <> < />  : (<IconButton
                 onClick={() => window.open(`${project.githubUrl}`)}>
                 <GitHubIcon />
@@ -196,8 +208,14 @@ function Project() {
               <div className="Container">
                 <div className="left">
                   <div className="title">{project.title}</div>
-                  <div className="author">{project.authors}</div>
+                  <div className="subtitle">{project.authors}</div>
                   <div className="description">{project.description}</div>
+                  <div>
+                  <Link to={`Projects/${project._id}`} style={{ textDecoration: "none" }}>
+                  <a className="more">View more</a>
+                  </Link>
+                  </div>
+
 				   {project?.githubUrl == "" ?    <> < />  : (<IconButton
                 onClick={() => window.open(`${project.githubUrl}`)}>
                 <GitHubIcon />
@@ -223,8 +241,14 @@ function Project() {
               <div className="Container">
                 <div className="left">
                   <div className="title">{project.title}</div>
-                  <div className="author">{project.authors}</div>
+                  <div className="subtitle">{project.authors}</div>
                   <div className="description">{project.description}</div>
+                  <div>
+                  <Link to={`Projects/${project._id}`} style={{ textDecoration: "none" }}>
+                  <a className="more">View more</a>
+                  </Link>
+                  </div>
+
 				   {project?.githubUrl == "" ?    <> < />  : (<IconButton
                 onClick={() => window.open(`${project.githubUrl}`)}>
                 <GitHubIcon />
@@ -247,8 +271,14 @@ function Project() {
               <div className="Container">
                 <div className="left">
                   <div className="title">{project.title}</div>
-                  <div className="author">{project.authors}</div>
+                  <div className="subtitle">{project.authors}</div>
                   <div className="description">{project.description}</div>
+                  <div>
+                  <Link to={`Projects/${project._id}`} style={{ textDecoration: "none" }}>
+                  <a className="more">View more</a>
+                  </Link>
+                  </div>
+
 				   {project?.githubUrl == "" ?    <> < />  : (<IconButton
                 onClick={() => window.open(`${project.githubUrl}`)}>
                 <GitHubIcon />

@@ -24,87 +24,11 @@ function JoinUsCMS() {
     })
   }, []);
 
-  //Adding Team Members
+  //Adding New Jobs
   const [jobrole, setJobRole] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [formLink, setformLink] = useState("");
-
-//   const addTeamMember = async (e) => {
-//     e.preventDefault();
-//     if (title === "" || description === "" || author === "") {
-//       window.alert("Please fill Title, Description and Author");
-//     } else {
-// 		  e.preventDefault();
-// 		if (
-// 	    file === null
-// 		)
-// 		{	
-		
-			
- 
-//             db.collection("Publications").doc().set({
-//               Title: title,
-//               Description: description,
-//               Authors: author,
-//               PublicationURL: url,
-//               Category: category,
-//               Year: year,
-//               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-//             });
-//             setTitle("");
-//             setDescription("");
-//             setAuthor("");
-//             setFile(null);
-//             setYear("");
-// 			setURL("");
-//             e.target.value = null;
-		
-      
-//   }
-//   else {
-
-//       let uploadTask = storage.ref(`/Publications/${file.name}`).put(file);
-//       uploadTask.on("state_changed", console.log, console.error, () => {
-//         storage
-//           .ref("Publications")
-//           .child(file.name)
-//           .getDownloadURL()
-//           .then((url) => {
-//             setFile(null);
-//             setURL(url);
-//             const uploadTask = storage
-//               .ref(`/Publications/${file.name}`)
-//               .put(file);
-//             db.collection("Publications").doc().set({
-//               Title: title,
-//               Description: description,
-//               Authors: author,
-//               PublicationURL: url,
-//               Category: category,
-//               Year: year,
-//               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-//             });
-//             setTitle("");
-//             setDescription("");
-//             setAuthor("");
-//             setFile(null);
-//             setYear("");
-// 			setURL("");
-//             e.target.value = null;
-//           });
-//       });
-
-	  
-//   }
-//   }
-//   };
-
-  //Deleting Member
-
-  const deleteMember = (id) => {
-    // db.collection("Publications").doc(id).delete();
-  };
 
   //UPLOADING FILE STARTED
   const [file, setFile] = useState(null);
@@ -112,6 +36,82 @@ function JoinUsCMS() {
   let handleFileChange = (e) => {
     setFile(e.target.files[0]);
   }
+  const addJobOpening = async (e) => {
+    e.preventDefault();
+    if (jobrole === "" || description === "" || formLink === "") {
+      window.alert("Please fill JobRole, Description and JobLink");
+    } else {
+		  e.preventDefault();
+		if (
+	    file === null
+		)
+		{	
+      const payload = {
+        role: jobrole,
+        description: description,
+        dueDate: dueDate,
+        applyLink: formLink,
+        jdPdf: url,
+        timestamp: Date.now(),
+  }
+  axios.post(`${process.env.REACT_APP_BASE_URL}/joinUs/add/`, payload).then(res=>{window.alert("New Job Added")})
+
+            setJobRole("");
+            setDescription("");
+            setDueDate("");
+            setformLink("");
+            setURL("");
+            e.target.value = null;
+		
+      
+  }
+  else {
+
+      // let uploadTask = storage.ref(`/Publications/${file.name}`).put(file);
+      // uploadTask.on("state_changed", console.log, console.error, () => {
+      //   storage
+      //     .ref("Publications")
+      //     .child(file.name)
+      //     .getDownloadURL()
+      //     .then((url) => {
+      //       setFile(null);
+      //       setURL(url);
+      //       const uploadTask = storage
+      //         .ref(`/Publications/${file.name}`)
+      //         .put(file);
+      //         const payload = {
+      //         Title: title,
+      //         Description: description,
+      //         Authors: author,
+      //         PublicationURL: url,
+      //         Category: category,
+      //         Year: year,
+      //         timestamp: Date.now(),
+      //   }
+      //   axios.post(`${process.env.REACT_APP_BASE_URL}/publications/add/`, payload).then(res=>{window.alert("New Publication Added")})
+      //       setTitle("");
+      //       setDescription("");
+      //       setAuthor("");
+      //       setFile(null);
+      //       setYear("");
+			// setURL("");
+      //       e.target.value = null;
+      //     });
+      // });
+
+	  
+  }
+  }
+  };
+
+
+  //Deleting Member
+
+  const deleteMember = (id) => {
+    // db.collection("Publications").doc(id).delete();
+  };
+
+
   const handleUpload = async (e) => {
     const uploadTask = await storage
       .ref(`/Publications/${file.name}`)
@@ -220,7 +220,7 @@ function JoinUsCMS() {
           </div>
 
           <div>
-            <button >Add</button>
+            <button onClick={addJobOpening}>Add</button>
           </div>
         </form>
       </div>
