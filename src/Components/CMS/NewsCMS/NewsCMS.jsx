@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./NewsCMS.scss";
 import { makeStyles } from "@material-ui/core/styles";
-import { storage } from "../../../firebase";
-import db from "../../../firebase";
-import firebase from "firebase";
 import { DeleteForever, Description } from "@material-ui/icons";
 import axios from 'axios';
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
@@ -47,7 +44,7 @@ function NewsCMS() {
   const [date, setDate] = useState("");
 
   const deleteMember = (id) => {
-    db.collection("News").doc(id).delete();
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/news/${id}`);
   };
 
   const addNews = async (e) => {

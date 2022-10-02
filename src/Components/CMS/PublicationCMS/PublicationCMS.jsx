@@ -131,7 +131,7 @@ function PublicationCMS() {
   //Deleting Member
 
   const deleteMember = (id) => {
-    // db.collection("Publications").doc(id).delete();
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/publications/${id}`);
   };
 
   //UPLOADING FILE STARTED

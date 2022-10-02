@@ -169,7 +169,7 @@ let removeFormFields = (i) => {
     width: '100'
   };
   const deleteMember = (id) => {
-    // db.collection("Projects").doc(id).delete();
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/project/${id}`);
   };
 
   //UPLOADING FILE STARTED

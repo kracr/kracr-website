@@ -4,10 +4,12 @@ import { DeleteForever } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
+
 
 function TeamCMSMember({ member, id }) {
   const deleteMember = () => {
-    // db.collection("TeamMembers").doc(id).delete();
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/team/${id}`);
   };
 
   const [category, setcategory] = useState("B.Tech");

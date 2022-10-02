@@ -39,7 +39,7 @@ function JoinUsCMS() {
   const addJobOpening = async (e) => {
     e.preventDefault();
     if (jobrole === "" || description === "" || formLink === "") {
-      window.alert("Please fill JobRole, Description and JobLink");
+      window.alert("Please fill Job Role, Description and JobLink");
     } else {
 		  e.preventDefault();
 		if (
@@ -108,6 +108,7 @@ function JoinUsCMS() {
   //Deleting Member
 
   const deleteMember = (id) => {
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/joinUs/${id}`);
     // db.collection("Publications").doc(id).delete();
   };
 

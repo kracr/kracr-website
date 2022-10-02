@@ -46,7 +46,8 @@ function ProjectDetails() {
           {projectData.title}
         </div>
         <div>
-          <ImageGallery items={images} />
+          {images.length>0 &&  (<ImageGallery items={images} />)}
+          
         </div>
         <div className="mainDescription">{projectData.description}</div>
         <div>
