@@ -36,6 +36,27 @@ function TeamCMS() {
   const [linkedin, setLinkedin] = useState("");
   const [mail, setMail] = useState("");
 
+
+  const callAPI = async(arr)=>{
+
+    let urls = [];
+    const allAPICalls = arr?.map(async (img) => {
+      const formData = new FormData();
+      formData.append("image", img);
+      return await axios.post(`${process.env.REACT_APP_BASE_URL}/image/upload`, formData);
+    });
+
+    const allAPICallsCalled = await Promise.all(allAPICalls);
+
+    allAPICallsCalled?.map((response) => {
+      urls.push(response.data.name);
+    });
+
+    return urls;
+    
+  }
+
+
   const addTeamMember = async (e) => {
     e.preventDefault();
     if (
@@ -91,16 +112,18 @@ function TeamCMS() {
          
     }
 		else {
-			  let uploadTask = storage.ref(`/Team/${file.name}`).put(file);
-      uploadTask.on("state_changed", console.log, console.error, () => {
-        storage
-          .ref("Team")
-          .child(file.name)
-          .getDownloadURL()
-          .then((url) => {
+
+      let urls = await callAPI([file]);
+			  // let uploadTask = storage.ref(`/Team/${file.name}`).put(file);
+      // uploadTask.on("state_changed", console.log, console.error, () => {
+        // storage
+        //   .ref("Team")
+        //   .child(file.name)
+        //   .getDownloadURL()
+        //   .then((url) => {
             setFile(null);
-            setURL(url);
-            const uploadTask = storage.ref(`/Team/${file.name}`).put(file);
+            setURL(urls[0]);
+      //       const uploadTask = storage.ref(`/Team/${file.name}`).put(file);
             const payload = {
               Name: name,
               Interests: interest,
@@ -111,9 +134,22 @@ function TeamCMS() {
               twitterLink: twitter,
               linkedinLink: linkedin,
               Mail: mail,
-              ImageURL: url
+              ImageURL: urls[0]
       }
-      axios.post(`${process.env.REACT_APP_BASE_URL}/team/add/`, payload).then(res=>{window.alert("New Member Added")})
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/team/add/`, payload).then(res=>{
+          setName("");
+              setInterest("");
+        setWebpage("");
+              setTwitter("");
+              setLinkedin("");
+              setGithub("");
+              setDesignation("");
+              setMail("");
+              setFile(null);
+              e.target.value = null;
+        setURL("");
+        window.alert("New Member Added")
+      });
         //     db.collection("TeamMembers").doc().set({
         //       Name: name,
         //       Interests: interest,
@@ -127,19 +163,9 @@ function TeamCMS() {
         //       ImageURL: url,
         //       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         //     });
-            setName("");
-            setInterest("");
-			setWebpage("");
-            setTwitter("");
-            setLinkedin("");
-            setGithub("");
-            setDesignation("");
-            setMail("");
-            setFile(null);
-            e.target.value = null;
-			setURL("");
-          });
-		});
+            
+    //       });
+		// });
            
 		
 		}

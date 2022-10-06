@@ -35,9 +35,7 @@ function TeamCMSMember({ member, id }) {
 
   const handleChange = (event) => {
     setcategory(event.target.value);
-    // db.collection("TeamMembers")
-    //   .doc(id)
-    //   .update({ Position: event.target.value });
+    axios.post(`${process.env.REACT_APP_BASE_URL}/team/update/${id}`,{Position: event.target.value});
   };
 
   const handleClose = () => {
