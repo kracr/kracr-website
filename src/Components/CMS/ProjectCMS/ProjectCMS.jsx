@@ -41,6 +41,8 @@ function ProjectCMS() {
   const [author, setAuthor] = useState("");
   const [year, setYear] = useState("");
   const [github, setGithub] = useState("");
+  const [htmlEmbedLink, setHtmlEmbedLink] = useState('');
+  const [htmlFile, setHtmlFile] = useState(null);
   const [formValues, setFormValues] = useState([]);
   // const [sections, setSections] = useState([{subheading:"", description : "", images : []}]);
   const [images, setImages] = useState([]);
@@ -96,6 +98,7 @@ function ProjectCMS() {
             year: year,
             images: data[0],
             sections: data[1],
+            htmlEmbedLink: htmlEmbedLink,
             timestamp: 0,
           });
         })
@@ -282,6 +285,19 @@ let removeFormFields = (i) => {
             ></input>
             <span className="border"></span>
           </div>
+          <div>
+            <input
+              type="text"
+              value={htmlEmbedLink}
+              onChange={(e) => setHtmlEmbedLink(e.target.value)}
+              placeholder="HTML document link for embedding"
+            ></input>
+            <span className="border"></span>
+          </div>
+          <label>HTML File for embedding</label>
+          <div>
+          <input type="file" name="images" id="file" onChange={e => setHtmlFile(e.target.files)}/>
+          </div>
 
           <div>
             <FormControl className={classes.formControl}>
@@ -331,6 +347,8 @@ let removeFormFields = (i) => {
             images={images}
             setImages={setImages}
           /> */}
+
+      
           
          
 
@@ -389,6 +407,7 @@ let removeFormFields = (i) => {
           </div>
         </div>
       ))}
+      
     </div>
   );
 }

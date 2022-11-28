@@ -6,6 +6,7 @@ import PublicationCMS from "../PublicationCMS/PublicationCMS";
 import ProjectCMS from "../ProjectCMS/ProjectCMS";
 import NewsCMS from "../NewsCMS/NewsCMS";
 import JoinUsCMS from "../JoinUsCMS/JoinUsCMS";
+import BlogCMS from "../BlogCMS/BlogCMS";
 
 function CMS() {
   return (
@@ -27,6 +28,9 @@ function CMS() {
           <Link to="/CMS/joinus">
             <li>Join Us</li>
           </Link>
+          <Link to="/CMS/blog">
+            <li>Blog</li>
+          </Link>
         </ul>
       </div>
       <div className="content">
@@ -45,6 +49,9 @@ function CMS() {
           </Route>
           <Route path="/CMS/joinus">
             <JoinUsCMS />
+          </Route>
+          <Route path="/CMS/blog">
+            <BlogCMS />
           </Route>
         </Switch>
       </div>

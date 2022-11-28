@@ -14,6 +14,8 @@ import News from "./Components/News/News";
 import JoinUs from "./Components/JoinUs/JoinUs";
 import { useSelector } from "react-redux";
 import Chatbot from "./Components/Chatbot/chatbot";
+import Blogs from "./Components/Blogs/Blogs";
+import BlogPage from "./Components/Blogs/BlogPage";
 
 function App() {
   const user = useSelector((state) => state.isLogged);
@@ -51,6 +53,10 @@ function App() {
                 <Project />
               </Route>
               <Route path="/projects/:id" exact component={ProjectDetails} />
+              <Route path="/blogs" exact>
+                <Blogs />
+              </Route>
+              <Route path="/blog/:id" exact component={BlogPage} />
               <Route path="/news" exact>
                 <News />
               </Route>
