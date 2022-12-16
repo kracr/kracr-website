@@ -66,7 +66,18 @@ const Blogs = () => {
       });
       setFilteredData(tempList);
     }, [inputFilter, allProjects]);
-  
+    
+    if(!allProjects.length){
+      return (
+        <div className="page">
+            <div className="heading">Blogs</div>
+        <div className="collapsableCategory">
+          <div className="title">No Blogs Right Now!!</div>
+        </div>
+        </div>
+      )
+    }
+
     return (
       <div className="page">
         <div className="page-wrapper">
