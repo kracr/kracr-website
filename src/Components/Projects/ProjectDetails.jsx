@@ -75,8 +75,8 @@ function ProjectDetails() {
       
         {projectData.htmlEmbedLink && <iframe src={projectData.htmlEmbedLink} title="" height='500px' width='80%' className='html-embed'></iframe>}
         
-        <Grid container spacing={3}>
-          <Grid item>
+        <div style={{display:'flex',justifyContent:'space-between', padding:'1.5rem'}}>
+          <div>
             <Card style={{
               width: 300,
               marginBottom: 10,
@@ -96,8 +96,8 @@ function ProjectDetails() {
                               })}
               </CardContent>
             </Card>
-          </Grid>
-          <Grid item>
+          </div>
+          <div>
             <Card style={{
               width: 300,
               backgroundColor: "grey",
@@ -117,7 +117,7 @@ function ProjectDetails() {
                   </IconButton>
                   </Tooltip>)}
                   {links?.map((i) => ( 
-                   <Tooltip title= {i.linkType}>
+                   <Tooltip title={i.linkType}>
                   <IconButton
                       onClick={() => window.open(`${i.link}`)}>
                       <Description />
@@ -129,8 +129,8 @@ function ProjectDetails() {
                     </IconButton>)}
                     </CardContent>
           </Card>
-          </Grid>
-          </Grid>
+          </div>
+          </div>
 
       </div>
     </div>

@@ -125,7 +125,7 @@ function ProjectCMS() {
         setYear("");
         setFile(null);
         setGithub("");
-        setLinks("");
+        setLinks([]);
         setURL("");
         setImages([]);
         setFormValues([]);
@@ -169,7 +169,7 @@ let addFormFields = () => {
 
   let addLinks = () => {
     // console.log(sections);
-      setLinks([...links, { linktype: "", link: "" }])
+      setLinks([...links, { linkType: "", link: "" }])
     }
 
 let removeFormFields = (i) => {
@@ -308,7 +308,7 @@ let removeLinks = (i) => {
               display : 'flex',
               
             }} key={index}>
-            <input style = {{width:100,marginRight: 50}} name="linktype" type="text" value={element.linktype || ""} onChange={(e) => handleChangeinLink(index, e)} placeholder="Link Type"></input>
+            <input style = {{width:100,marginRight: 50}} name="linkType" type="text" value={element.linkType || ""} onChange={(e) => handleChangeinLink(index, e)} placeholder="Link Type"></input>
             <input type="text" value={element.link || ""} name="link" onChange={(e) => handleChangeinLink(index, e)} placeholder="Link"></input>
 
             <button type="button"  className="button remove" onClick={() => removeLinks(index)}>Remove</button> 
