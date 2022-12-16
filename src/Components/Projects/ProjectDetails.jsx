@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import ImageGallery from 'react-image-gallery';
-import { IconButton } from "@material-ui/core";
+import { IconButton, Tooltip } from "@material-ui/core";
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { Description } from "@material-ui/icons";
 import "../../Page.scss";
@@ -24,13 +24,21 @@ function ProjectDetails() {
   const [projectData, setProjectData] = useState([]);
   const [images, setImages] = useState([]);
   const [subHeadings, setSubHeading] = useState([]);
+  const authors = projectData.authors?.split(",");
+  const [links, setLinks] = useState([]);
   useEffect(() => {
     console.log(id);
     axios.get(`${process.env.REACT_APP_BASE_URL}/project/${id}`).then(res => {
       setProjectData(res.data);
+      console.log("ok",authors);
       setImages(res.data.images.map((i) => {
         return { "original": process.env.REACT_APP_BASE_URL + "/image/" + i, "thumbnail": process.env.REACT_APP_BASE_URL + "/image/" + i };
       }));
+      setLinks(res.data.links?.map(i => {
+        return {
+          "linkType": i.linkType, "link": i.link
+        };
+      }))
       setSubHeading(res.data.sections.map(i => {
         return {
           "subHeading": i.subHeading, "description": i.description, "images": i.images.map((j) => {
@@ -83,9 +91,9 @@ function ProjectDetails() {
                 >
                   Team Members
                 </Typography>
-                <Typography>{projectData.authors}</Typography>
-
-
+                {authors?.map(function(item, i){
+                                return  <Typography><li key = {i}>{item}</li></Typography>;
+                              })}
               </CardContent>
             </Card>
           </Grid>
@@ -101,15 +109,25 @@ function ProjectDetails() {
                   color="textSecondary"
                   gutterBottom
                 >
-                  Important Links</Typography>{projectData?.githubUrl == "" ? <> < />  : (<IconButton
+                  Important Links</Typography>{projectData?.githubUrl == "" ? <> < />  : (
+                    <Tooltip title="Github">
+                    <IconButton
                     onClick={() => window.open(`${projectData.githubUrl}`)}>
                     <GitHubIcon />
-                  </IconButton>)}
-
+                  </IconButton>
+                  </Tooltip>)}
+                  {links?.map((i) => ( 
+                   <Tooltip title= {i.linkType}>
+                  <IconButton
+                      onClick={() => window.open(`${i.link}`)}>
+                      <Description />
+                    </IconButton>
+                    </Tooltip>))}
                     {projectData?.publicationUrl == "" ? <> < />  : (<IconButton
                       onClick={() => window.open(`${projectData.ProjepublicationUrlctURL}`)}>
                       <Description />
-                    </IconButton>)}</CardContent>
+                    </IconButton>)}
+                    </CardContent>
           </Card>
           </Grid>
           </Grid>

@@ -44,6 +44,7 @@ function ProjectCMS() {
   const [htmlEmbedLink, setHtmlEmbedLink] = useState('');
   const [htmlFile, setHtmlFile] = useState(null);
   const [formValues, setFormValues] = useState([]);
+  const [links, setLinks] = useState([]);
   // const [sections, setSections] = useState([{subheading:"", description : "", images : []}]);
   const [images, setImages] = useState([]);
   const [imgUrl,setimgUrl] = useState([]);
@@ -95,6 +96,7 @@ function ProjectCMS() {
             publicationUrl: url,
             category: category,
             githubUrl: github,
+            links: links,
             year: year,
             images: data[0],
             sections: data[1],
@@ -123,6 +125,7 @@ function ProjectCMS() {
         setYear("");
         setFile(null);
         setGithub("");
+        setLinks("");
         setURL("");
         setImages([]);
         setFormValues([]);
@@ -142,6 +145,11 @@ let handleChangeinForm = (i, e) => {
     // newFormValues[i][images] = images2
     setFormValues(newFormValues);
   }
+  let handleChangeinLink = (i, e) => {
+    let newLinks = [...links];
+    newLinks[i][e.target.name] = e.target.value;
+    setLinks(newLinks);
+  }
 let handleSubImageChange = (i, e) => {
     // console.log(e.target.files);
     let newFormValues = [...formValues];
@@ -159,10 +167,20 @@ let addFormFields = () => {
     setFormValues([...formValues, { subheading: "", subheadingdetails: "" , images: {}}])
   }
 
+  let addLinks = () => {
+    // console.log(sections);
+      setLinks([...links, { linktype: "", link: "" }])
+    }
+
 let removeFormFields = (i) => {
     let newFormValues = [...formValues];
     newFormValues.splice(i, 1);
     setFormValues(newFormValues)
+}
+let removeLinks = (i) => {
+  let newLinks = [...links];
+  newLinks.splice(i, 1);
+  setLinks(newLinks)
 }
   //Deleting Member
 
@@ -275,7 +293,6 @@ let removeFormFields = (i) => {
             ></input>
             <span className="border"></span>
           </div>
-
           <div>
             <input
               type="text"
@@ -284,6 +301,22 @@ let removeFormFields = (i) => {
               placeholder="Github Link"
             ></input>
             <span className="border"></span>
+          </div>
+          {links.map((element,index) =>(
+            
+            <div style = {{
+              display : 'flex',
+              
+            }} key={index}>
+            <input style = {{width:100,marginRight: 50}} name="linktype" type="text" value={element.linktype || ""} onChange={(e) => handleChangeinLink(index, e)} placeholder="Link Type"></input>
+            <input type="text" value={element.link || ""} name="link" onChange={(e) => handleChangeinLink(index, e)} placeholder="Link"></input>
+
+            <button type="button"  className="button remove" onClick={() => removeLinks(index)}>Remove</button> 
+            <span className="border"></span>
+            </div>
+          ))}
+          <div className="button-section">
+              <button className="button add" type="button" onClick={() => addLinks()}>Add Link</button>
           </div>
           <div>
             <input
