@@ -380,6 +380,17 @@ function Home() {
                   <span>Slide 13</span>
                 </div>
               </div>
+ <div className="each-slide">
+                <div
+                  style={{
+                    backgroundImage: `url('https://kracr.iiitd.edu.in/api/image/IMG20230411160510')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <span>Slide 13</span>
+                </div>
+              </div>
             </Slide>
           </div>
         </div>
